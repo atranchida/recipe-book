@@ -3,6 +3,7 @@ import './App.css';
 import RecipeForm from './components/RecipeForm';
 import { Recipe } from './interfaces/Recipe';
 import { Ingredient } from './interfaces/Ingredient';
+import RecipeList from './components/RecipeList';
 
 const Welcome = () => {
   return <h1>Welcome to the Recipe Page!</h1>
@@ -11,7 +12,7 @@ const Welcome = () => {
 const App = () => {
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const [recipeValue, setRecipeValue] = useState("");
-  
+
   const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
   const [ingredient, setIngredient] = useState("");
 
@@ -54,6 +55,8 @@ const App = () => {
   return (
     <div>
       <Welcome />
+      <RecipeList
+        recipes={recipes} />
       <RecipeForm
         handleIngredientChange={handleIngredientChange}
         handleAddIngredient={handleAddIngredient}
