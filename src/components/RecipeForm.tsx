@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, MouseEvent, HTMLProps } from "react";
+import React, { ChangeEvent, MouseEvent, HTMLProps } from "react";
 import styles from '../css/RecipeForm.module.css';
 import IngredientList from "./IngredientList";
 import { Ingredient } from "../interfaces/Ingredient";
