@@ -1,6 +1,7 @@
 import React from "react";
 import { Recipe } from "../interfaces/Recipe";
 import RecipeListItem from "./RecipeListItem";
+import styles from '../css/RecipeList.module.css';
 
 interface Props {
     recipes: Recipe[];
@@ -8,17 +9,15 @@ interface Props {
 
 const RecipeList = ({ recipes }: Props) => {
     return (
-        <div>
-            <ul>
-                {recipes.map(recipe => (
-                    <RecipeListItem
-                        recipe={{
-                            name: recipe.name,
-                            ingredients: recipe.ingredients
-                        }}
-                    />
-                ))}
-            </ul>
+        <div className = {styles.RecipeList}>
+            {recipes.map(recipe => (
+                <RecipeListItem
+                    recipe={{
+                        name: recipe.name,
+                        ingredients: recipe.ingredients
+                    }}
+                />
+            ))}
         </div>
     );
 };
