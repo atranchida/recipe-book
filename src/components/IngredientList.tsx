@@ -6,17 +6,20 @@ interface Props {
     ingredients: Ingredient[];
 }
 
-const IngredientList = ({ingredients} : Props) => {
+const IngredientList = ({ ingredients }: Props) => {
     return (
-        <ul>
-            {ingredients.map(ingredient => (
-                <IngredientListItem
-                    ingredient={{
-                        name: ingredient.name
-                    }}
+        <div>
+            <h2>Ingredients</h2>
+            <ul>
+                {ingredients.map(ingredient => (
+                    <IngredientListItem
+                        ingredient={{
+                            name: ingredient.name
+                        }}
                     />
-            ))}
-        </ul>
+                ))}
+            </ul>
+        </div>
     );
 };
 
