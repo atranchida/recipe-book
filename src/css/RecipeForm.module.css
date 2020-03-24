@@ -1,0 +1,11 @@
+.RecipeForm {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+.RecipeForm input {
+	padding: 10px;
+	width: 100%;
+	margin-bottom: 10px;
+}
