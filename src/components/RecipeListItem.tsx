@@ -7,8 +7,8 @@ interface Props {
     recipe: Recipe;
 }
 
-const RecipeListItem = ({ recipe }: Props) => {
-    return (<div className={styles.RecipeCard}>
+const RecipeListItem = ({ recipe }: Props) => { 
+     return (<div className={styles.RecipeCard}>
         <div className={styles.CardContents}>
             <h1>{recipe.name}</h1>
             <IngredientList ingredients={recipe.ingredients} />
