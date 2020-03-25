@@ -9,7 +9,7 @@ interface Props {
 
 const RecipeList = ({ recipes }: Props) => {
     return (
-        <div className = {styles.RecipeList}>
+        <div data-testid="recipeList" className = {styles.RecipeList}>
             {recipes.map(recipe => (
                 <RecipeListItem
                     recipe={{
