@@ -1,7 +1,8 @@
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, getByTestId } from "@testing-library/react";
 
 import RecipeForm, { Props } from "../components/RecipeForm";
+import "@testing-library/jest-dom/extend-expect";
 
 function renderRecipeForm(props: Partial<Props> = {}) {
     const defaultProps: Props = {
@@ -19,14 +20,12 @@ function renderRecipeForm(props: Partial<Props> = {}) {
 
 describe("<RecipeForm />", () => {
     test("should display a blank recipe form with default values set", async () => {
-        // use findByTestId to find elements by their data-testid attribute value
         const { findByTestId } = renderRecipeForm();
 
         const recipeForm = await findByTestId("recipe-form");
 
         expect(recipeForm).toHaveFormValues({
-            recipeValue: "",
-            ingredients: []
+            recipeValue: ""
         });
     });
 });
