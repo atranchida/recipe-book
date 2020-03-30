@@ -63,6 +63,9 @@ function RecipeForm(props: Props) {
             <form data-testid="recipe-form" className={styles.RecipeForm} onSubmit={handleCreateRecipe} {...props}>
                 <h1>Enter a new Recipe!</h1>
                 <input
+                    type="text"
+                    name="recipeValue"
+                    data-testiid="recipeValue"
                     placeholder="Enter the recipe name..."
                     onChange={handleRecipeChange}
                     value={recipeValue}
@@ -71,7 +74,11 @@ function RecipeForm(props: Props) {
                 <IngredientList ingredients={ingredients} />
 
                 <div>
-                    <input placeholder="Enter ingredient..."
+                    <input
+                        type="text"
+                        name="ingredient"
+                        data-testid="ingredient" 
+                        placeholder="Enter ingredient..."
                         onChange={handleIngredientChange}
                         value={ingredient} />
                     <button onClick={handleAddIngredient}>+ Ingredient</button>

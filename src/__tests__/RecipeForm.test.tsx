@@ -25,8 +25,8 @@ describe("<RecipeForm />", () => {
         const recipeForm = await findByTestId("recipe-form");
 
         expect(recipeForm).toHaveFormValues({
-            recipeValue: ""
+            recipeValue: "",
+            ingredient: ""
         });
     });
 });
-
