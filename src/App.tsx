@@ -18,6 +18,7 @@ const App = () => {
         onIngredientChange={noop}
         onRecipeChange={noop}
         onAddIngredient={noop}
+        //onCreate={noop}
         />
     </div>
   );
