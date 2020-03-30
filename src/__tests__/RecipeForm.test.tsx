@@ -39,4 +39,18 @@ describe("<RecipeForm />", () => {
 
         expect(onRecipeChange).toHaveBeenCalledWith("test");
     });
+
+    test("should allow entering an ingredient value", async () => {
+        const onIngredientChange = jest.fn();
+        const { findByTestId } = renderRecipeForm({ onIngredientChange });
+        const ingredient = await findByTestId("ingredient");
+
+        fireEvent.change(ingredient, {target: {value: "apple"} });
+
+        expect(onIngredientChange).toHaveBeenCalledWith("apple");
+    });
+
+    // TODO: Write test for pushing the add ingredient button 
+
+    // TODO: Write test for clicking create 
 });
