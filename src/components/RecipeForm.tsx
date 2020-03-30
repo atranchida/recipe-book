@@ -8,6 +8,7 @@ import RecipeList from "./RecipeList";
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
     onRecipeChange: (recipe: string) => void;
+    onAddIngredient: (ingredient: string) => void;
 }
 
 function RecipeForm(props: Props) {
@@ -32,6 +33,7 @@ function RecipeForm(props: Props) {
             }
         ]);
 
+        props.onAddIngredient(ingredient);
         setIngredient("");
     };
 
@@ -59,7 +61,7 @@ function RecipeForm(props: Props) {
     return (
         <div>
             <RecipeList recipes={recipes} />
-            
+
             <form data-testid="recipe-form" className={styles.RecipeForm} onSubmit={handleCreateRecipe} {...props}>
                 <h1>Enter a new Recipe!</h1>
                 <input
@@ -77,11 +79,15 @@ function RecipeForm(props: Props) {
                     <input
                         type="text"
                         name="ingredient"
-                        data-testid="ingredient" 
+                        data-testid="ingredient"
                         placeholder="Enter ingredient..."
                         onChange={handleIngredientChange}
                         value={ingredient} />
-                    <button onClick={handleAddIngredient}>+ Ingredient</button>
+                    <button
+                        onClick={handleAddIngredient}
+                        data-testid="addIngredient">
+                        + Ingredient
+                    </button>
                 </div>
 
                 <button

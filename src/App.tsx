@@ -17,6 +17,7 @@ const App = () => {
       <RecipeForm
         onIngredientChange={noop}
         onRecipeChange={noop}
+        onAddIngredient={noop}
         />
     </div>
   );

@@ -13,6 +13,10 @@ function renderRecipeForm(props: Partial<Props> = {}) {
 
         onRecipeChange() {
             return;
+        },
+
+        onAddIngredient() {
+            return;
         }
     };
     return render(<RecipeForm {...defaultProps} {...props} />);
@@ -45,12 +49,29 @@ describe("<RecipeForm />", () => {
         const { findByTestId } = renderRecipeForm({ onIngredientChange });
         const ingredient = await findByTestId("ingredient");
 
-        fireEvent.change(ingredient, {target: {value: "apple"} });
+        fireEvent.change(ingredient, { target: { value: "apple" } });
 
         expect(onIngredientChange).toHaveBeenCalledWith("apple");
     });
 
-    // TODO: Write test for pushing the add ingredient button 
+    test("should add new ingredient to list of ingredients", async () => {
+        const onAddIngredient = jest.fn();
+        const onIngredientChange = jest.fn();
+
+        const { findByTestId } = renderRecipeForm({
+            onAddIngredient,
+            onIngredientChange
+        });
+
+        const addIngredient = await findByTestId("addIngredient");
+        const ingredient = await findByTestId("ingredient");
+
+        fireEvent.change(ingredient, { target: { value: "newIngredient" } });
+        fireEvent.click(addIngredient);
+        fireEvent.change(addIngredient, { target: { value: "newIngredient" } });
+
+        expect(onAddIngredient).toHaveBeenCalledWith("newIngredient");
+    });
 
     // TODO: Write test for clicking create 
 });
