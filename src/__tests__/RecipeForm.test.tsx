@@ -1,5 +1,5 @@
 import React from "react";
-import { render, getByTestId } from "@testing-library/react";
+import { render, getByTestId, fireEvent } from "@testing-library/react";
 
 import RecipeForm, { Props } from "../components/RecipeForm";
 import "@testing-library/jest-dom/extend-expect";
@@ -28,5 +28,15 @@ describe("<RecipeForm />", () => {
             recipeValue: "",
             ingredient: ""
         });
+    });
+
+    test("should allow entering a recipe name", async () => {
+        const onRecipeChange = jest.fn();
+        const { findByTestId } = renderRecipeForm({ onRecipeChange });
+        const recipeValue = await findByTestId("recipeValue");
+
+        fireEvent.change(recipeValue, { target: { value: "test" } });
+
+        expect(onRecipeChange).toHaveBeenCalledWith("test");
     });
 });

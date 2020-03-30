@@ -65,7 +65,7 @@ function RecipeForm(props: Props) {
                 <input
                     type="text"
                     name="recipeValue"
-                    data-testiid="recipeValue"
+                    data-testid="recipeValue"
                     placeholder="Enter the recipe name..."
                     onChange={handleRecipeChange}
                     value={recipeValue}
