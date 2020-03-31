@@ -13,6 +13,7 @@ const IngredientList = ({ ingredients }: Props) => {
             <ul>
                 {ingredients.map(ingredient => (
                     <IngredientListItem
+                        key={ingredient.name}
                         ingredient={{
                             name: ingredient.name
                         }}

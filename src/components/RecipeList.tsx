@@ -12,6 +12,7 @@ const RecipeList = ({ recipes }: Props) => {
         <div data-testid="recipeList" className = {styles.RecipeList}>
             {recipes.map(recipe => (
                 <RecipeListItem
+                    key={recipe.name}
                     recipe={{
                         name: recipe.name,
                         ingredients: recipe.ingredients

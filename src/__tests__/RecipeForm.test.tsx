@@ -20,9 +20,9 @@ function renderRecipeForm(props: Partial<Props> = {}) {
             return;
         },
 
-        // onCreate() {
-        //     return;
-        // }
+        onCreate() {
+            return;
+        }
     };
     return render(<RecipeForm {...defaultProps} {...props} />);
 }
@@ -80,31 +80,30 @@ describe("<RecipeForm />", () => {
     });
 
     // TODO: Write test for clicking create Recipe 
-    // test("should add a new recipe with recipeValue and ingredients", async () => {
-    //     const onRecipeChange = jest.fn();
-    //     const onAddIngredient = jest.fn();
-    //     const onIngredientChange = jest.fn();
-    //     const onCreate = jest.fn();
+    test("should add a new recipe with recipeValue and ingredients", async () => {
+        const onRecipeChange = jest.fn();
+        const onAddIngredient = jest.fn();
+        const onIngredientChange = jest.fn();
+        const onCreate = jest.fn();
 
-    //     const { findByTestId } = renderRecipeForm({
-    //         onAddIngredient,
-    //         onIngredientChange,
-    //         onRecipeChange,
-    //         onCreate
-    //     });
+        const { findByTestId } = renderRecipeForm({
+            onAddIngredient,
+            onIngredientChange,
+            onRecipeChange,
+            onCreate
+        });
 
-    //     const addIngredient = await findByTestId("addIngredient");
-    //     const ingredient = await findByTestId("ingredient");
-    //     const recipeValue = await findByTestId("recipeValue");
-    //     const createButton = await findByTestId("create");
+        const addIngredient = await findByTestId("addIngredient");
+        const ingredient = await findByTestId("ingredient");
+        const recipeValue = await findByTestId("recipeValue");
+        const createButton = await findByTestId("create");
 
-    //     fireEvent.change(recipeValue, { target: { value: "test" } });
-    //     fireEvent.change(ingredient, { target: { value: "newIngredient" } });
-    //     fireEvent.click(addIngredient);
-    //     fireEvent.change(addIngredient, { target: { value: "newIngredient" } });
-    //     fireEvent.click(createButton);
-    
-    //      TODO: In order to see if this works we need to figure out how to get the Ingredient[] in this class
-    //     expect(onCreate).toHaveBeenCalledWith("apple", "newIngredient");
-    // });
+        fireEvent.change(recipeValue, { target: { value: "test" } });
+        fireEvent.change(ingredient, { target: { value: "newIngredient" } });
+        fireEvent.click(addIngredient);
+        fireEvent.change(addIngredient, { target: { value: "newIngredient" } });
+        fireEvent.click(createButton);
+
+        expect(onCreate).toHaveBeenCalledWith("test", ["newIngredient"]);
+    });
 });
