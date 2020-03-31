@@ -9,7 +9,7 @@ export interface Props {
     onIngredientChange: (ingredient: string) => void;
     onRecipeChange: (recipe: string) => void;
     onAddIngredient: (ingredient: string) => void;
-    onCreate: (recipe: string, ingredient: Ingredient[]) => void;
+    onCreate: (recipe: string, ingredients: Ingredient[]) => void;
 }
 
 function RecipeForm(props: Props) {

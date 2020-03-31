@@ -1,9 +1,8 @@
 import React from "react";
-import { render, getByTestId, fireEvent } from "@testing-library/react";
+import { render, fireEvent } from "@testing-library/react";
 
 import RecipeForm, { Props } from "../components/RecipeForm";
 import "@testing-library/jest-dom/extend-expect";
-import { Ingredient } from "../interfaces/Ingredient";
 
 function renderRecipeForm(props: Partial<Props> = {}) {
     const defaultProps: Props = {
@@ -36,7 +35,6 @@ describe("<RecipeForm />", () => {
         expect(recipeForm).toHaveFormValues({
             recipeValue: "",
             ingredient: "",
-            //ingredients: []
         });
     });
 
@@ -79,7 +77,6 @@ describe("<RecipeForm />", () => {
         expect(onAddIngredient).toHaveBeenCalledWith("newIngredient");
     });
 
-    // TODO: Write test for clicking create Recipe 
     test("should add a new recipe with recipeValue and ingredients", async () => {
         const onRecipeChange = jest.fn();
         const onAddIngredient = jest.fn();
@@ -104,6 +101,6 @@ describe("<RecipeForm />", () => {
         fireEvent.change(addIngredient, { target: { value: "newIngredient" } });
         fireEvent.click(createButton);
 
-        expect(onCreate).toHaveBeenCalledWith("test", ["newIngredient"]);
+        expect(onCreate).toHaveBeenCalledWith("test", [{name:"newIngredient"}]);
     });
 });
