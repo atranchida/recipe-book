@@ -66,7 +66,6 @@ function RecipeForm({onAddIngredient, onCreate, onIngredientChange, onRecipeChan
         setRecipes(recipesObj);
     }, [])
     
-
     return (
         <div>
             <RecipeList recipes={recipes} />
