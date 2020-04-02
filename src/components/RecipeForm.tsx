@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, MouseEvent, HTMLProps, FormEvent, useEffect } from "react";
+import React, { useState, ChangeEvent, MouseEvent, FormEvent, useEffect } from "react";
 import styles from '../css/RecipeForm.module.css';
 import IngredientList from "./IngredientList";
 import { Ingredient } from "../interfaces/Ingredient";
@@ -13,7 +13,7 @@ export interface Props {
     onCreate: (recipe: string, ingredients: Ingredient[]) => void;
 }
 
-function RecipeForm(props: Props) {
+function RecipeForm({onAddIngredient, onCreate, onIngredientChange, onRecipeChange, ...props}: Props) {
     const [recipes, setRecipes] = useState<Array<Recipe>>([]);
     const [recipeValue, setRecipeValue] = useState("");
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -22,7 +22,7 @@ function RecipeForm(props: Props) {
     const handleIngredientChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         setIngredient(value);
-        props.onIngredientChange(value);
+        onIngredientChange(value);
     };
 
     const handleAddIngredient = (event: MouseEvent<HTMLButtonElement>) => {
@@ -35,14 +35,14 @@ function RecipeForm(props: Props) {
             }
         ]);
 
-        props.onAddIngredient(ingredient);
+        onAddIngredient(ingredient);
         setIngredient("");
     };
 
     const handleRecipeChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
         setRecipeValue(value);
-        props.onRecipeChange(value);
+        onRecipeChange(value);
     };
 
     const handleCreateRecipe = (event: FormEvent<HTMLFormElement>) => {
@@ -56,7 +56,7 @@ function RecipeForm(props: Props) {
             }
         ]);
 
-        props.onCreate(recipeValue, ingredients);
+        onCreate(recipeValue, ingredients);
         setRecipeValue("");
         setIngredients([]);
     };

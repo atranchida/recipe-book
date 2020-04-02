@@ -7,13 +7,14 @@ interface Props {
     recipe: Recipe;
 }
 
-const RecipeListItem = ({ recipe }: Props) => { 
-     return (<div className={styles.RecipeCard}>
+function RecipeCard({ recipe }: Props) {
+    return (<div className={styles.RecipeCard}>
+        <button className={styles.DeleteButton}>X</button>
         <div className={styles.CardContents}>
             <h1>{recipe.name}</h1>
             <IngredientList ingredients={recipe.ingredients} />
         </div>
     </div>)
-};
+}
 
-export default RecipeListItem;
+export default RecipeCard;

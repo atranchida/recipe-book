@@ -1,6 +1,6 @@
 import React from "react";
 import { Recipe } from "../interfaces/Recipe";
-import RecipeListItem from "./RecipeListItem";
+import RecipeCard from "./RecipeCard";
 import styles from '../css/RecipeList.module.css';
 
 interface Props {
@@ -11,7 +11,7 @@ const RecipeList = ({ recipes }: Props) => {
     return (
         <div data-testid="recipeList" className = {styles.RecipeList}>
             {recipes.map(recipe => (
-                <RecipeListItem
+                <RecipeCard
                     key={recipe.name}
                     recipe={{
                         name: recipe.name,

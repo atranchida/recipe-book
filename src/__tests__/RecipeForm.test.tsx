@@ -4,7 +4,7 @@ import { render, fireEvent } from "@testing-library/react";
 import RecipeForm, { Props } from "../components/RecipeForm";
 import "@testing-library/jest-dom/extend-expect";
 
-function renderRecipeForm(props: Partial<Props> = {}) {
+function renderRecipeForm({onAddIngredient, onCreate, onIngredientChange, onRecipeChange, ...props}: Partial<Props> = {}) {
     const defaultProps: Props = {
 
         onIngredientChange() {
