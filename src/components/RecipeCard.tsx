@@ -10,11 +10,11 @@ export interface Props {
 
 function RecipeCard({ recipe, onDelete }: Props) {
     return (
-        <div className={styles.RecipeCard}>>
+        <div className={styles.RecipeCard}>
             <button className={styles.DeleteButton}
                 onClick={() => onDelete(recipe.name)}
                 data-testid="delete-recipe">
-                >X
+                X
             </button>
             <div className={styles.CardContents}>
                 <h1>{recipe.name}</h1>
