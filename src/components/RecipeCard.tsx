@@ -5,11 +5,12 @@ import styles from '../css/RecipeList.module.css';
 
 interface Props {
     recipe: Recipe;
+    onDelete: (name: string) => void
 }
 
-function RecipeCard({ recipe }: Props) {
-    return (<div className={styles.RecipeCard}>
-        <button className={styles.DeleteButton}>X</button>
+function RecipeCard({ recipe, onDelete }: Props) {
+    return (<div className={styles.RecipeCard}> 
+        <button className={styles.DeleteButton} onClick={() => onDelete(recipe.name)}>X</button>
         <div className={styles.CardContents}>
             <h1>{recipe.name}</h1>
             <IngredientList ingredients={recipe.ingredients} />

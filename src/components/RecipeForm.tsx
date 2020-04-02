@@ -13,7 +13,7 @@ export interface Props {
     onCreate: (recipe: string, ingredients: Ingredient[]) => void;
 }
 
-function RecipeForm({onAddIngredient, onCreate, onIngredientChange, onRecipeChange, ...props}: Props) {
+function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeChange, ...props }: Props) {
     const [recipes, setRecipes] = useState<Array<Recipe>>([]);
     const [recipeValue, setRecipeValue] = useState("");
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -61,14 +61,22 @@ function RecipeForm({onAddIngredient, onCreate, onIngredientChange, onRecipeChan
         setIngredients([]);
     };
 
+    const handleDeleteRecipe = (name: string) => {
+        const newRecipeList = recipes.filter(recipe => recipe.name !== name);
+        setRecipes(newRecipeList);
+    };
+
     useEffect(() => {
         const recipesObj: Array<Recipe> = RecipeJSON;
         setRecipes(recipesObj);
     }, [])
-    
+
     return (
         <div>
-            <RecipeList recipes={recipes} />
+            <RecipeList
+                recipes={recipes}
+                onDelete={handleDeleteRecipe}
+            />
 
             <form data-testid="recipe-form" className={styles.RecipeForm} onSubmit={handleCreateRecipe} {...props}>
                 <h1>Enter a new Recipe!</h1>

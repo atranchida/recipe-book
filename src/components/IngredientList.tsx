@@ -9,7 +9,6 @@ interface Props {
 const IngredientList = ({ ingredients }: Props) => {
     return (
         <div>
-            <h2>Ingredients</h2>
             <ul>
                 {ingredients.map(ingredient => (
                     <IngredientListItem

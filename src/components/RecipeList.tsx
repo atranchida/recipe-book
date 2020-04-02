@@ -5,9 +5,10 @@ import styles from '../css/RecipeList.module.css';
 
 interface Props {
     recipes: Recipe[];
+    onDelete: (name: string) => void
 }
 
-const RecipeList = ({ recipes }: Props) => {
+const RecipeList = ({ recipes, onDelete }: Props) => {
     return (
         <div data-testid="recipeList" className = {styles.RecipeList}>
             {recipes.map(recipe => (
@@ -17,6 +18,7 @@ const RecipeList = ({ recipes }: Props) => {
                         name: recipe.name,
                         ingredients: recipe.ingredients
                     }}
+                   onDelete = {onDelete}
                 />
             ))}
         </div>

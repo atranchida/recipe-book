@@ -14,16 +14,28 @@
     min-width: 200px;
 }
 
+.RecipeCard h1 {
+    text-align: center;
+}
+
+.RecipeCard ul {
+    list-style: none;
+    padding: 0;
+}
+
 .DeleteButton {
+    color: #b2b2b2;
+    font-weight: bold;
     margin: 3px;
     float: right;
     background-color: transparent;
-    border: 1px solid #f42338;
-    color: #f42338;
+    border: 0;
     border-radius: 2px;
+    transition: .2s color linear;
 }
 
 .DeleteButton:hover {
+    color: #DF5433;
     cursor: pointer;
 }
 
