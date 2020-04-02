@@ -1,0 +1,10 @@
+[
+    {
+        "name": "Apple Pie",
+        "ingredients": ["Apples", "Sugar", "Flour"]
+    },
+    {
+        "name": "Cheesecake",
+        "ingredients": ["Cream Cheese", "Vanilla Extract", "Eggs"]
+    }
+]
