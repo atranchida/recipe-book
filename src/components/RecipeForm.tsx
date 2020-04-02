@@ -1,9 +1,10 @@
-import React, { useState, ChangeEvent, MouseEvent, HTMLProps, FormEvent } from "react";
+import React, { useState, ChangeEvent, MouseEvent, HTMLProps, FormEvent, useEffect } from "react";
 import styles from '../css/RecipeForm.module.css';
 import IngredientList from "./IngredientList";
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
 import RecipeList from "./RecipeList";
+import RecipeJSON from "../data/recipes.json";
 
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
@@ -59,6 +60,12 @@ function RecipeForm(props: Props) {
         setRecipeValue("");
         setIngredients([]);
     };
+
+    useEffect(() => {
+        const recipesObj: Array<Recipe> = RecipeJSON;
+        setRecipes(recipesObj);
+    }, [])
+    
 
     return (
         <div>

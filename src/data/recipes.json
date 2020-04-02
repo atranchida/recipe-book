@@ -1,10 +1,30 @@
 [
     {
         "name": "Apple Pie",
-        "ingredients": ["Apples", "Sugar", "Flour"]
+        "ingredients": [
+            {
+                "name": "Apples"
+            },
+            {
+                "name": "Sugar"
+            },
+            {
+                "name": "Flour"
+            }
+        ]
     },
     {
         "name": "Cheesecake",
-        "ingredients": ["Cream Cheese", "Vanilla Extract", "Eggs"]
+        "ingredients": [
+            {
+                "name": "Cream Cheese"
+            },
+            {
+                "name": "Vanilla Extract"
+            },
+            {
+                "name": "Eggs"
+            }
+        ]
     }
 ]
