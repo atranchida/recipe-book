@@ -26,7 +26,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
 
     useEffect(() => {
         setCurrentRecipes(Array.from(recipes.splice(0,currentLength)));
-    }, [recipes])
+    }, [recipes, currentLength])
   
     return (
         <div data-testid="recipeList" className = {styles.RecipeList}>   
