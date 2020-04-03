@@ -39,7 +39,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
             </div>
         
             <InfiniteScroll className={styles.InfiniteScroll}
-                dataLength={recipes.length}
+                dataLength={currentLength}
                 next={fetchMoreData}
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
