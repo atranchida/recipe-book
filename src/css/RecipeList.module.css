@@ -1,3 +1,8 @@
+.InfiniteScroll {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .RecipeList {
     display: flex;
     flex-wrap: wrap;

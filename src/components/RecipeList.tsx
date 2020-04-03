@@ -38,7 +38,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
             <span>hasMore: {String(hasMore)}</span><br/>
             </div>
         
-            <InfiniteScroll
+            <InfiniteScroll className={styles.InfiniteScroll}
                 dataLength={recipes.length}
                 next={fetchMoreData}
                 hasMore={hasMore}
