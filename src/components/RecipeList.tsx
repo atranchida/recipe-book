@@ -12,33 +12,40 @@ interface Props {
 const RecipeList = ({ recipes, onDelete }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
+    const [currentLength, setCurrentLength] = useState(20);
 
     function fetchMoreData() {
-        if(currentRecipes.length >= 50){
+        if(currentLength >= recipes.length){
             setHasMore(false);
             return;
         }
-        setCurrentRecipes(currentRecipes.concat(recipes.slice(4,50)))
+        let newCurrentLength = currentLength + 20;
+        setCurrentRecipes(currentRecipes.concat(recipes.slice(currentLength,newCurrentLength)));
+        setCurrentLength(newCurrentLength);
     };
 
     useEffect(() => {
-        let testArray = Array.from(recipes.splice(0,2)); //trying to load the first 2 recipes
-        setCurrentRecipes(testArray)
-    }, [])
+        setCurrentRecipes(Array.from(recipes.splice(0,currentLength)));
+    }, [recipes])
   
     return (
-        <div data-testid="recipeList" className = {styles.RecipeList}>
-            
-            <span>{currentRecipes.length}</span>
+        <div data-testid="recipeList" className = {styles.RecipeList}>   
+           
+           <div>
+            <span>current recipes loaded: {currentRecipes.length}</span><br/>
+            <span>current length: {currentLength}</span><br/>
+            <span>total recipes: {recipes.length}</span><br/>
+            </div>
+        
             <InfiniteScroll
                 dataLength={recipes.length}
                 next={fetchMoreData}
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
             >
-                {currentRecipes.map(recipe => (
+                {currentRecipes.map((recipe, index) => (
                 <RecipeCard
-                    key={recipe.name}
+                    key={index}
                     recipe={{
                         name: recipe.name,
                         ingredients: recipe.ingredients
