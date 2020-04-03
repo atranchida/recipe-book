@@ -25,7 +25,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
     };
 
     useEffect(() => {
-        setCurrentRecipes(Array.from(recipes.splice(0,currentLength)));
+        setCurrentRecipes(Array.from(recipes.slice(0,currentLength)));
     }, [recipes, currentLength])
   
     return (
