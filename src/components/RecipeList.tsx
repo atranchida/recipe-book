@@ -35,6 +35,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
             <span>current recipes loaded: {currentRecipes.length}</span><br/>
             <span>current length: {currentLength}</span><br/>
             <span>total recipes: {recipes.length}</span><br/>
+            <span>hasMore: {String(hasMore)}</span><br/>
             </div>
         
             <InfiniteScroll
