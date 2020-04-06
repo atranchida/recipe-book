@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
+import styles from '../css/RecipeForm.module.css';
 import { Recipe } from '../interfaces/Recipe';
 import RecipeForm from './RecipeForm';
-import styles from '../css/RecipeForm.module.css';
 
 interface Props {
     onAdd: (newRecipe: Recipe) => void;
@@ -26,7 +26,13 @@ const AddRecipeButton = ({ onAdd }: Props) => {
             <button className={styles.AddRecipeButton} onClick={() => setOpen(true)}>
                 Add New Recipe
             </button>
-            <Modal open={open} onClose={() => setOpen(false)} center>
+            <Modal
+                open={open}
+                onClose={() => setOpen(false)}
+                center
+                classNames={{ modal: 'CustomModal' }}
+            >
+
                 <RecipeForm
                     onIngredientChange={noop}
                     onRecipeNameChange={noop}
