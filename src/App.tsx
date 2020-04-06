@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import AddRecipeButton from './components/AddRecipeButton';
+import RecipeFilter from './components/RecipeFilter';
+import RecipeList from './components/RecipeList';
 import RecipeJSON from "./data/recipes.json";
 import { Recipe } from "./interfaces/Recipe";
-import RecipeList from './components/RecipeList';
 
 const Welcome = () => {
   return <h1>Welcome to the Recipe Page!</h1>
@@ -22,9 +23,18 @@ const App = () => {
     setRecipes(newRecipeList);
   };
 
+  const handleFilter = (filteredRecipes: Array<Recipe>) => {
+    setRecipes(filteredRecipes);
+  };
+
   return (
     <div>
       <Welcome />
+
+      <RecipeFilter
+        recipes={RecipeJSON}
+        onFilter={handleFilter}
+      />
 
       <AddRecipeButton
         recipes={recipes}
