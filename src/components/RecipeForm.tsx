@@ -4,7 +4,6 @@ import RecipeJSON from "../data/recipes.json";
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
 import IngredientList from "./IngredientList";
-import RecipeFilter from "./RecipeFilter";
 import RecipeList from "./RecipeList";
 
 export interface Props {
@@ -67,10 +66,6 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
         setRecipes(newRecipeList);
     };
 
-    const handleFilter = (filteredRecipes: Array<Recipe>) => {
-        setRecipes(filteredRecipes);
-    };
-
     useEffect(() => {
         const recipesObj: Array<Recipe> = RecipeJSON;
         setRecipes(recipesObj);
@@ -78,11 +73,6 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
 
     return (
         <div>
-            <RecipeFilter
-                recipes={RecipeJSON}
-                onFilter={handleFilter}
-            />
-
             <RecipeList
                 recipes={recipes}
                 onDelete={handleDeleteRecipe}
