@@ -7,7 +7,7 @@ import RecipeJSON from "./data/recipes.json";
 import { Recipe } from "./interfaces/Recipe";
 
 const Welcome = () => {
-  return <h1>Welcome to the Recipe Page!</h1>
+  return <h1>Cook Book</h1>
 };
 
 const App = () => {
@@ -34,16 +34,21 @@ const App = () => {
 
   return (
     <div>
-      <Welcome />
 
-      <RecipeFilter
-        recipes={RecipeJSON}
-        onFilter={handleFilter}
-      />
+      <div className="App-header">
+        <Welcome />
 
-      <AddRecipeButton
-        onAdd={handleAddRecipe}
-      />
+        <RecipeFilter
+          recipes={RecipeJSON}
+          onFilter={handleFilter}
+        />
+
+        or
+
+        <AddRecipeButton
+          onAdd={handleAddRecipe}
+        />
+      </div>
 
       <RecipeList
         recipes={recipes}
