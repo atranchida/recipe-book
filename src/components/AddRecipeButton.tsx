@@ -3,6 +3,7 @@ import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import { Recipe } from '../interfaces/Recipe';
 import RecipeForm from './RecipeForm';
+import styles from '../css/RecipeForm.module.css';
 
 interface Props {
     onAdd: (newRecipe: Recipe) => void;
@@ -22,7 +23,7 @@ const AddRecipeButton = ({ onAdd }: Props) => {
 
     return (
         <>
-            <button className="button" onClick={() => setOpen(true)}>
+            <button className={styles.AddRecipeButton} onClick={() => setOpen(true)}>
                 Add New Recipe
             </button>
             <Modal open={open} onClose={() => setOpen(false)} center>

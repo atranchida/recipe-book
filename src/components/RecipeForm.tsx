@@ -68,7 +68,7 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNam
 
                 <IngredientList ingredients={ingredients} />
 
-                <div>
+                <div className={styles.Ingredients}>
                     <input
                         type="text"
                         name="ingredient"
@@ -77,13 +77,15 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNam
                         onChange={handleIngredientChange}
                         value={ingredient} />
                     <button
+                        className={styles.AddIngredientButton}
                         onClick={handleAddIngredient}
                         data-testid="addIngredient">
-                        + Ingredient
+                        +
                     </button>
                 </div>
 
                 <button
+                    className={styles.CreateButton}
                     type="submit"
                     data-testid="create">
                     Create
