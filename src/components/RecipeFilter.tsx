@@ -16,10 +16,22 @@ const RecipeFilter = ({ recipes, onFilter }: Props) => {
     };
 
     const doFilter = (filterValue: string) => {
-        const newRecipeList = recipes.filter(recipe =>
-            (recipe.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase())));
-        onFilter(newRecipeList);
+        const filteredRecipes = recipes.filter(recipe =>
+            (recipe.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+            || (filterIngredients(recipe, filterValue)));
+
+        onFilter(filteredRecipes); //pass recipes back to reload list
     };
+
+    function filterIngredients(recipe: Recipe, filterValue: string) {
+        let hasIngredient = false;
+        recipe.ingredients.map(ingredient => {
+            if (ingredient.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+                hasIngredient = true;
+        });
+
+        return hasIngredient;
+    }
 
     return (
         <div>
