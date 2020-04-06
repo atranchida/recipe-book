@@ -3,17 +3,16 @@ import styles from '../css/RecipeForm.module.css';
 import IngredientList from "./IngredientList";
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
-import RecipeList from "./RecipeList";
-import RecipeJSON from "../data/recipes.json";
 
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
     onRecipeChange: (recipe: string) => void;
     onAddIngredient: (ingredient: string) => void;
     onCreate: (recipe: string, ingredients: Ingredient[]) => void;
+    jsonRecipes: Recipe[];
 }
 
-function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeChange, ...props }: Props) {
+function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeChange, jsonRecipes, ...props }: Props) {
     const [recipes, setRecipes] = useState<Array<Recipe>>([]);
     const [recipeValue, setRecipeValue] = useState("");
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
@@ -61,22 +60,13 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
         setIngredients([]);
     };
 
-    const handleDeleteRecipe = (name: string) => {
-        const newRecipeList = recipes.filter(recipe => recipe.name !== name);
-        setRecipes(newRecipeList);
-    };
 
     useEffect(() => {
-        const recipesObj: Array<Recipe> = RecipeJSON;
-        setRecipes(recipesObj);
+        setRecipes(jsonRecipes);
     }, [])
 
     return (
         <div>
-            {/* <RecipeList
-                recipes={recipes}
-                onDelete={handleDeleteRecipe}
-            /> */}
 
             <form data-testid="recipe-form" className={styles.RecipeForm} onSubmit={handleCreateRecipe} {...props}>
                 <h1>Enter a new Recipe!</h1>
