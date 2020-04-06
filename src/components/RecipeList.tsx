@@ -12,7 +12,7 @@ interface Props {
 const RecipeList = ({ recipes, onDelete }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
-    const [currentLength, setCurrentLength] = useState(20);
+    const [currentLength, setCurrentLength] = useState(30);
 
     function fetchMoreData() {
         if(currentLength >= recipes.length){
