@@ -28,7 +28,35 @@
         ]
     },
     {
-        "name": "Cheesecake",
+        "name": "Cherry Pie",
+        "ingredients": [
+            {
+                "name": "Cherries"
+            },
+            {
+                "name": "Sugar"
+            },
+            {
+                "name": "Eggs"
+            }
+        ]
+    },
+    {
+        "name": "Tiramisu",
+        "ingredients": [
+            {
+                "name": "Coffee"
+            },
+            {
+                "name": "Vanilla Extract"
+            },
+            {
+                "name": "Eggs"
+            }
+        ]
+    },
+    {
+        "name": "Canoli",
         "ingredients": [
             {
                 "name": "Cream Cheese"
@@ -42,44 +70,16 @@
         ]
     },
     {
-        "name": "Cheesecake",
+        "name": "Lasagna",
         "ingredients": [
             {
-                "name": "Cream Cheese"
+                "name": "Noodles"
             },
             {
-                "name": "Vanilla Extract"
+                "name": "Pasta Sauce"
             },
             {
-                "name": "Eggs"
-            }
-        ]
-    },
-    {
-        "name": "Cheesecake",
-        "ingredients": [
-            {
-                "name": "Cream Cheese"
-            },
-            {
-                "name": "Vanilla Extract"
-            },
-            {
-                "name": "Eggs"
-            }
-        ]
-    },
-    {
-        "name": "Cheesecake",
-        "ingredients": [
-            {
-                "name": "Cream Cheese"
-            },
-            {
-                "name": "Vanilla Extract"
-            },
-            {
-                "name": "Eggs"
+                "name": "Cheese"
             }
         ]
     },
