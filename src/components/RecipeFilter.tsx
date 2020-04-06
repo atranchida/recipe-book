@@ -3,7 +3,7 @@ import { Recipe } from "../interfaces/Recipe";
 
 interface Props {
     recipes: Recipe[];
-    onFilter: (filterValue: Array<Recipe>) => void
+    onFilter: (filterValue: Array<Recipe>) => void;
 }
 
 const RecipeFilter = ({ recipes, onFilter }: Props) => {
@@ -20,7 +20,7 @@ const RecipeFilter = ({ recipes, onFilter }: Props) => {
             (recipe.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
             || (filterIngredients(recipe, filterValue)));
 
-        onFilter(filteredRecipes); //pass recipes back to reload list
+        onFilter(filteredRecipes); 
     };
 
     function filterIngredients(recipe: Recipe, filterValue: string) {
@@ -28,6 +28,7 @@ const RecipeFilter = ({ recipes, onFilter }: Props) => {
         recipe.ingredients.map(ingredient => {
             if (ingredient.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
                 hasIngredient = true;
+            return hasIngredient;
         });
 
         return hasIngredient;

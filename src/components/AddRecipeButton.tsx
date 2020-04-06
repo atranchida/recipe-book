@@ -1,19 +1,24 @@
-import React, { useState } from 'react'
-import RecipeForm from './RecipeForm';
+import React, { useState } from 'react';
 import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import { Recipe } from '../interfaces/Recipe';
+import RecipeForm from './RecipeForm';
 
 interface Props {
-    recipes: Recipe[];
+    onAdd: (newRecipe: Recipe) => void;
 }
 
 function noop() {
     return;
 }
 
-const AddRecipeButton = ({ recipes }: Props) => {
+const AddRecipeButton = ({ onAdd }: Props) => {
     const [open, setOpen] = useState(false);
+
+    const handleCreateRecipe = (newRecipe: Recipe) => {
+        onAdd(newRecipe);
+        setOpen(false);
+    };
 
     return (
         <>
@@ -23,10 +28,9 @@ const AddRecipeButton = ({ recipes }: Props) => {
             <Modal open={open} onClose={() => setOpen(false)} center>
                 <RecipeForm
                     onIngredientChange={noop}
-                    onRecipeChange={noop}
+                    onRecipeNameChange={noop}
                     onAddIngredient={noop}
-                    onCreate={noop}
-                    jsonRecipes={recipes}
+                    onCreate={handleCreateRecipe}
                 />
             </Modal>
         </>

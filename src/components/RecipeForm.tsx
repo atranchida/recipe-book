@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import styles from '../css/RecipeForm.module.css';
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
@@ -6,15 +6,13 @@ import IngredientList from "./IngredientList";
 
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
-    onRecipeChange: (recipe: string) => void;
+    onRecipeNameChange: (recipe: string) => void;
     onAddIngredient: (ingredient: string) => void;
-    onCreate: (recipe: string, ingredients: Ingredient[]) => void;
-    jsonRecipes: Recipe[];
+    onCreate: (newRecipe: Recipe) => void;
 }
 
-function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeChange, jsonRecipes, ...props }: Props) {
-    const [recipes, setRecipes] = useState<Array<Recipe>>([]);
-    const [recipeValue, setRecipeValue] = useState("");
+function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNameChange, ...props }: Props) {
+    const [recipeName, setRecipeName] = useState("");
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
     const [ingredient, setIngredient] = useState("");
 
@@ -38,32 +36,21 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
         setIngredient("");
     };
 
-    const handleRecipeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleRecipeNameChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        setRecipeValue(value);
-        onRecipeChange(value);
+        setRecipeName(value);
+        onRecipeNameChange(value);
     };
 
     const handleCreateRecipe = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
-        setRecipes(previousRecipes => [
-            ...previousRecipes,
-            {
-                name: recipeValue,
-                ingredients: ingredients
-            }
-        ]);
-
-        onCreate(recipeValue, ingredients);
-        setRecipeValue("");
+        onCreate({
+            name: recipeName,
+            ingredients: ingredients
+        });
+        setRecipeName("");
         setIngredients([]);
     };
-
-
-    useEffect(() => {
-        setRecipes(jsonRecipes);
-    }, [])
 
     return (
         <div>
@@ -75,8 +62,8 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
                     name="recipeValue"
                     data-testid="recipeValue"
                     placeholder="Enter the recipe name..."
-                    onChange={handleRecipeChange}
-                    value={recipeValue}
+                    onChange={handleRecipeNameChange}
+                    value={recipeName}
                 />
 
                 <IngredientList ingredients={ingredients} />

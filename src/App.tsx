@@ -18,6 +18,11 @@ const App = () => {
     setRecipes(recipesObj);
   }, [])
 
+  const handleAddRecipe = (newRecipe: Recipe) => {
+    var newRecipes = [newRecipe, ...recipes]
+    setRecipes(newRecipes);
+  };
+
   const handleDeleteRecipe = (name: string) => {
     const newRecipeList = recipes.filter(recipe => recipe.name !== name);
     setRecipes(newRecipeList);
@@ -37,7 +42,7 @@ const App = () => {
       />
 
       <AddRecipeButton
-        recipes={recipes}
+        onAdd={handleAddRecipe}
       />
 
       <RecipeList
