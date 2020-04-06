@@ -73,10 +73,10 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeCha
 
     return (
         <div>
-            <RecipeList
+            {/* <RecipeList
                 recipes={recipes}
                 onDelete={handleDeleteRecipe}
-            />
+            /> */}
 
             <form data-testid="recipe-form" className={styles.RecipeForm} onSubmit={handleCreateRecipe} {...props}>
                 <h1>Enter a new Recipe!</h1>
