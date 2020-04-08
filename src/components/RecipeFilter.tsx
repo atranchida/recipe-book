@@ -37,6 +37,7 @@ const RecipeFilter = ({ recipes, onFilter }: Props) => {
     return (
         <div>
             <input
+                className="Search-filter"
                 type="text"
                 placeholder="Search"
                 value={filter}

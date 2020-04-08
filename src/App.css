@@ -45,3 +45,8 @@ html {
 .CustomModal {
   overflow-y: scroll;
 }
+
+.Search-filter {
+  height: 32px;
+  font-size: 0.8em;
+}
