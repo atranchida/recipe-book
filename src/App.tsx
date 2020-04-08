@@ -23,9 +23,25 @@ const App = () => {
     setRecipes(newRecipes);
   };
 
-  const handleDeleteRecipe = (name: string) => {
-    const newRecipeList = recipes.filter(recipe => recipe.name !== name);
-    setRecipes(newRecipeList);
+  const handleDeleteRecipe = (recipe: Recipe) => {
+    console.log("Recipe deleted: " + recipe.name);
+
+    //would probably be better to add deleted flag, set deleted to true and filter out deleted = true
+    const index = recipes.findIndex(r => r.name === recipe.name);
+    let recipesClone = [...recipes];
+    recipesClone.splice(index, 1);
+    setRecipes(recipesClone);
+  };
+
+  const handleEditRecipeName =  (recipe: Recipe, newName: string) => {
+    const index = recipes.findIndex(r => r.name === recipe.name);
+    let recipesClone = [...recipes];
+    let recipeToEdit = {...recipesClone[index]};
+    recipeToEdit.name = newName;
+    recipesClone[index] = recipeToEdit;
+    setRecipes(recipesClone);
+
+    console.log("Recipe renamed to: " + recipesClone[index].name);
   };
 
   const handleFilter = (filteredRecipes: Array<Recipe>) => {
@@ -53,6 +69,7 @@ const App = () => {
       <RecipeList
         recipes={recipes}
         onDelete={handleDeleteRecipe}
+        onEditRecipeName = {handleEditRecipeName}
       />
     </div>
   );

@@ -6,10 +6,11 @@ import RecipeCard from "./RecipeCard";
 
 interface Props {
     recipes: Recipe[];
-    onDelete: (name: string) => void
+    onDelete: (recipe: Recipe) => void
+    onEditRecipeName: (recipe: Recipe, newName: string) => void
 }
 
-const RecipeList = ({ recipes, onDelete }: Props) => {
+const RecipeList = ({ recipes, onDelete, onEditRecipeName }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
     const [currentLength, setCurrentLength] = useState(30);
@@ -45,6 +46,7 @@ const RecipeList = ({ recipes, onDelete }: Props) => {
                         ingredients: recipe.ingredients
                     }}
                    onDelete = {onDelete}
+                   onEditRecipeName = {onEditRecipeName}
                 />
             ))}
             </InfiniteScroll>

@@ -1,42 +1,37 @@
-import React, { useRef, useState } from "react";
+import React from "react";
+import ContentEditable from 'react-contenteditable';
+import styles from '../css/RecipeList.module.css';
 import { Recipe } from "../interfaces/Recipe";
 import IngredientList from "./IngredientList";
-import styles from '../css/RecipeList.module.css';
-import ContentEditable from 'react-contenteditable'
 
 export interface Props {
     recipe: Recipe;
-    onDelete: (name: string) => void
+    onDelete: (recipe: Recipe) => void
+    onEditRecipeName: (recipe: Recipe, newName: string) => void
 }
 
-function RecipeCard({ recipe, onDelete }: Props) {
-
-    const text = useRef("");
-    const [html, setHTML] = useState(`<h1>` + recipe.name + `</h1>`);
-
+function RecipeCard({ recipe, onDelete, onEditRecipeName }: Props) {
+    
     const handleChange = (evt: { target: { value: string; }; }) => {
-        text.current = evt.target.value;
-        setHTML(text.current);
-    };
-
-    const handleBlur = () => {
-        console.log(text.current);
+        onEditRecipeName(recipe, evt.target.value);
+        recipe.name = evt.target.value
     };
 
     return (
         <>
             <div className={styles.RecipeCard}>
                 <button className={styles.DeleteButton}
-                    onClick={() => onDelete(recipe.name)}
+                    onClick={() => onDelete(recipe)}
                     data-testid="delete-recipe">
                     X
-            </button>
+             </button>
                 <div className={styles.CardContents}>
-                    <ContentEditable
-                        html={html}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
-                    />
+                    <h1>
+                        <ContentEditable
+                            html={recipe.name}
+                            onChange={handleChange}
+                        />
+                    </h1>
                     <IngredientList ingredients={recipe.ingredients} />
                 </div>
             </div>
