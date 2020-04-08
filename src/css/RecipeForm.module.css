@@ -37,6 +37,7 @@
     font-style: normal;
     border-width: 1px 1px 3px;
     width: 50%;
+    border: 0;
 } 
 
 .AddIngredientButton {
@@ -48,6 +49,7 @@
     font-style: normal;
     border-width: 1px 1px 3px;
     height: 46px;
+    border: 0;
 }
 
 .AddRecipeButton {
@@ -59,5 +61,6 @@
 	font-size: 18px;
 	text-align: center;
 	font-style: normal;
-	border-width: 1px 1px 3px;
+    border-width: 1px 1px 3px;
+    border: 0;
 }
