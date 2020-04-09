@@ -33,15 +33,24 @@ const App = () => {
     setRecipes(recipesClone);
   };
 
-  const handleEditRecipeName =  (recipe: Recipe, newName: string) => {
+  const handleEditRecipeName = (recipe: Recipe, newName: string) => {
     const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
-    let recipeToEdit = {...recipesClone[index]};
+    let recipeToEdit = { ...recipesClone[index] };
     recipeToEdit.name = newName;
     recipesClone[index] = recipeToEdit;
     setRecipes(recipesClone);
 
     console.log("Recipe renamed to: " + recipesClone[index].name);
+  };
+
+  const handleEditIngredients = (recipe: Recipe) => {
+    const index = recipes.findIndex(r => r.name === recipe.name);
+    let recipesClone = [...recipes];
+    let recipeToEdit = { ...recipesClone[index] };
+    recipeToEdit = recipe;
+    recipesClone[index] = recipeToEdit;
+    setRecipes(recipesClone);
   };
 
   const handleFilter = (filteredRecipes: Array<Recipe>) => {
@@ -69,7 +78,8 @@ const App = () => {
       <RecipeList
         recipes={recipes}
         onDelete={handleDeleteRecipe}
-        onEditRecipeName = {handleEditRecipeName}
+        onEditRecipeName={handleEditRecipeName}
+        onEditIngredients={handleEditIngredients}
       />
     </div>
   );

@@ -8,9 +8,10 @@ interface Props {
     recipes: Recipe[];
     onDelete: (recipe: Recipe) => void
     onEditRecipeName: (recipe: Recipe, newName: string) => void
+    onEditIngredients: (recipe: Recipe) => void
 }
 
-const RecipeList = ({ recipes, onDelete, onEditRecipeName }: Props) => {
+const RecipeList = ({ recipes, onDelete, onEditRecipeName, onEditIngredients }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
     const [currentLength, setCurrentLength] = useState(30);
@@ -47,6 +48,7 @@ const RecipeList = ({ recipes, onDelete, onEditRecipeName }: Props) => {
                     }}
                    onDelete = {onDelete}
                    onEditRecipeName = {onEditRecipeName}
+                   onEditIngredients = {onEditIngredients}
                 />
             ))}
             </InfiniteScroll>

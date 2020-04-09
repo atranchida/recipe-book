@@ -37,6 +37,7 @@ const AddRecipeButton = ({ onAdd }: Props) => {
                     onIngredientChange={noop}
                     onRecipeNameChange={noop}
                     onAddIngredient={noop}
+                    onEditIngredient={noop}
                     onCreate={handleCreateRecipe}
                 />
             </Modal>

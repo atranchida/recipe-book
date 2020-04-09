@@ -1,22 +1,24 @@
-import React, { useRef } from "react";
-import { Ingredient } from "../interfaces/Ingredient";
+import React from "react";
 import ContentEditable from "react-contenteditable";
-
+import { Ingredient } from "../interfaces/Ingredient";
 
 interface Props {
     ingredients: Ingredient[];
+    onEditIngredient: (ingredients: Array<Ingredient>) => void;
 }
 
-const IngredientList = ({ ingredients }: Props) => {
+const IngredientList = ({ ingredients, onEditIngredient }: Props) => {
 
-    const text = useRef("");
+    const handleChange = (ingredient: Ingredient, evt: { target: { value: string; }; }) => {
+        const index = ingredients.findIndex(i => i.name === ingredient.name);
+        let ingredientToEdit = { ...ingredients[index] };
+        ingredientToEdit.name = evt.target.value;
+        ingredients[index] = ingredientToEdit;
 
-    const handleChange = (evt: { target: { value: string; }; }) => {
-        text.current = evt.target.value;
-    };
+        onEditIngredient(ingredients);
+        ingredient.name = evt.target.value;
 
-    const handleBlur = () => {
-        console.log(text.current);
+        console.log("Ingredient changed to: " + ingredients[index].name);
     };
 
     return (
@@ -26,8 +28,7 @@ const IngredientList = ({ ingredients }: Props) => {
                     <ContentEditable
                         key={ingredient.name}
                         html={ingredient.name}
-                        onBlur={handleBlur}
-                        onChange={handleChange}
+                        onChange={(e) => handleChange(ingredient, e)}
                     />
                 ))}
             </ul>

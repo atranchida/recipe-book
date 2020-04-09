@@ -8,10 +8,11 @@ export interface Props {
     onIngredientChange: (ingredient: string) => void;
     onRecipeNameChange: (recipe: string) => void;
     onAddIngredient: (ingredient: string) => void;
+    onEditIngredient: (ingredient: Array<Ingredient>) => void;
     onCreate: (newRecipe: Recipe) => void;
 }
 
-function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNameChange, ...props }: Props) {
+function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNameChange, onEditIngredient, ...props }: Props) {
     const [recipeName, setRecipeName] = useState("");
     const [ingredients, setIngredients] = useState<Array<Ingredient>>([]);
     const [ingredient, setIngredient] = useState("");
@@ -52,6 +53,10 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNam
         setIngredients([]);
     };
 
+    const handleEditIngredient = (ingredients: Array<Ingredient>) => {
+        setIngredients(ingredients);
+    };
+
     return (
         <div>
 
@@ -66,7 +71,10 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNam
                     value={recipeName}
                 />
 
-                <IngredientList ingredients={ingredients} />
+                <IngredientList
+                    ingredients={ingredients}
+                    onEditIngredient={handleEditIngredient}
+                />
 
                 <div className={styles.Ingredients}>
                     <input
