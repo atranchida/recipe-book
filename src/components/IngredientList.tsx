@@ -24,9 +24,9 @@ const IngredientList = ({ ingredients, onEditIngredient }: Props) => {
     return (
         <div>
             <ul>
-                {ingredients.map(ingredient => (
+                {ingredients.map((ingredient, index) => (
                     <ContentEditable
-                        key={ingredient.name}
+                        key={index}
                         html={ingredient.name}
                         onChange={(e) => handleChange(ingredient, e)}
                     />

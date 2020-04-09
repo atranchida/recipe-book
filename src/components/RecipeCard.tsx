@@ -21,7 +21,7 @@ function RecipeCard({ recipe, onDelete, onEditRecipeName, onEditIngredients }: P
 
     const handleIngredientChange = (newIngredients: Array<Ingredient>) => {
         recipe.ingredients = newIngredients;
-        //onEditIngredients(recipe);
+        onEditIngredients(recipe);
     }
 
     return (
