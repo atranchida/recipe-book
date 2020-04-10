@@ -12,11 +12,31 @@ const Welcome = () => {
 
 const App = () => {
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
+  const [filter, setFilter] = useState("");
 
   useEffect(() => {
     const recipesObj: Array<Recipe> = RecipeJSON;
     setRecipes(recipesObj);
   }, [])
+
+  useEffect(() => {
+    const filteredRecipes = recipes.filter(recipe =>
+      (recipe.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
+      || (filterIngredients(recipe, filter)));
+
+    setFilteredRecipes(filteredRecipes);
+  }, [recipes, filter])
+
+  function filterIngredients(recipe: Recipe, filterValue: string) {
+    let hasIngredient = false;
+    recipe.ingredients.map((ingredient) => {
+      if (ingredient.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
+        hasIngredient = true;
+      return hasIngredient;
+    });
+    return hasIngredient;
+  }
 
   const handleAddRecipe = (newRecipe: Recipe) => {
     var newRecipes = [newRecipe, ...recipes]
@@ -53,8 +73,8 @@ const App = () => {
     setRecipes(recipesClone);
   };
 
-  const handleFilter = (filteredRecipes: Array<Recipe>) => {
-    setRecipes(filteredRecipes);
+  const handleFilter = (filterValue: string) => {
+    setFilter(filterValue);
   };
 
   return (
@@ -64,7 +84,6 @@ const App = () => {
         <Welcome />
 
         <RecipeFilter
-          recipes={RecipeJSON}
           onFilter={handleFilter}
         />
 
@@ -76,7 +95,7 @@ const App = () => {
       </div>
 
       <RecipeList
-        recipes={recipes}
+        recipes={filteredRecipes}
         onDelete={handleDeleteRecipe}
         onEditRecipeName={handleEditRecipeName}
         onEditIngredients={handleEditIngredients}
