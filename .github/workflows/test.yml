@@ -24,8 +24,6 @@ jobs:
       uses: stefanoeb/jest-action@1.0.2
       with:
         jestArgs: src/__tests__
-    - run: npm ci
-    - run: npm run build --if-present
     - run: npm test
       env:
         CI: true
