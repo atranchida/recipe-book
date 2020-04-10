@@ -3,6 +3,7 @@ import styles from '../css/RecipeForm.module.css';
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
 import IngredientList from "./IngredientList";
+import FileUpload from "./FileUpload";
 
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
@@ -91,6 +92,8 @@ function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNam
                         +
                     </button>
                 </div>
+
+                <FileUpload />
 
                 <button
                     className={styles.CreateButton}
