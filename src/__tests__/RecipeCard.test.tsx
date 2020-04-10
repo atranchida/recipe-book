@@ -41,7 +41,7 @@ describe("<RecipeCard />", () => {
 
         fireEvent.click(deleteRecipe);
 
-        expect(onDelete).toHaveBeenCalledWith(mockRecipe.name);
+        expect(onDelete).toHaveBeenCalledWith(mockRecipe);
     });
 
     // Can write test for edit recipe name
