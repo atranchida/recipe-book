@@ -21,6 +21,10 @@ function renderRecipeForm({ ...props }: Partial<Props> = {}) {
     onCreate() {
       return;
     },
+
+    onEditIngredient() {
+      return;
+    }
   };
   return render(<RecipeForm {...defaultProps} {...props} />);
 }

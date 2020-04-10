@@ -20,6 +20,14 @@ function renderRecipeCard({ ...props }: Partial<Props> = {}) {
 
         onDelete() {
             return;
+        },
+
+        onEditIngredients() {
+            return;
+        },
+
+        onEditRecipeName() {
+            return;
         }
     };
     return render(<RecipeCard {...defaultProps} {...props} />);
@@ -35,4 +43,8 @@ describe("<RecipeCard />", () => {
 
         expect(onDelete).toHaveBeenCalledWith(mockRecipe.name);
     });
+
+    // Can write test for edit recipe name
+
+    // Can write test for edit ingredient name
 });
