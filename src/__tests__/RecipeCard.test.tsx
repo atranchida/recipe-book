@@ -43,8 +43,4 @@ describe("<RecipeCard />", () => {
 
         expect(onDelete).toHaveBeenCalledWith(mockRecipe);
     });
-
-    // Can write test for edit recipe name
-
-    // Can write test for edit ingredient name
 });
