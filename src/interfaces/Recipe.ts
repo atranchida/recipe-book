@@ -6,11 +6,12 @@ export interface Recipe {
 }
 
 export interface RecipeBookState {
-    recipes: Recipe[]
+    recipes: Recipe[],
+    filter: ''
 }
 
 export const ADD_RECIPE = "ADD_RECIPE"
- export const SET_RECIPES = "SET_RECIPES"
+export const SET_RECIPES = "SET_RECIPES"
 
 // export const EDIT_RECIPE = "EDIT_RECIPE"
 // export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
@@ -45,8 +46,8 @@ export interface AddRecipeAction {
 export type RecipeActionTypes =
     | SetRecipeAction
     | AddRecipeAction
-    // | EditRecipeAction
-    // | DeleteRecipeAction
-    // | EditIngredientAction
+// | EditRecipeAction
+// | DeleteRecipeAction
+// | EditIngredientAction
 
 export type AppActions = RecipeActionTypes
