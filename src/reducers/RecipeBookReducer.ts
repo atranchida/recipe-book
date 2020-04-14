@@ -20,3 +20,5 @@ export function RecipeBookReducer(
             return state
     }
 }
+
+export default RecipeBookReducer

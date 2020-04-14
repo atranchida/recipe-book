@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import styles from '../css/RecipeForm.module.css';
 import { Recipe } from '../interfaces/Recipe';
+import { addRecipe } from '../types/actions';
 import RecipeForm from './RecipeForm';
-
-interface Props {
-    onAdd: (newRecipe: Recipe) => void;
-}
 
 function noop() {
     return;
 }
 
-const AddRecipeButton = ({ onAdd }: Props) => {
+const AddRecipeButton = () => {
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
     const handleCreateRecipe = (newRecipe: Recipe) => {
-        onAdd(newRecipe);
+        dispatch(addRecipe(newRecipe));
         setOpen(false);
     };
 
