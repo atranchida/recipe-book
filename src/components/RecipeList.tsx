@@ -6,9 +6,10 @@ import RecipeCard from "./RecipeCard";
 
 interface Props {
     recipes: Recipe[];
+    filter: string;
 }
 
-const RecipeList = ({ recipes }: Props) => {
+const RecipeList = ({ recipes, filter }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
     const [currentLength, setCurrentLength] = useState(30);
@@ -36,7 +37,9 @@ const RecipeList = ({ recipes }: Props) => {
                 hasMore={hasMore}
                 loader={<h4>Loading...</h4>}
             >
-                {currentRecipes.map((recipe, index) => (
+                {currentRecipes
+                    .filter(recipe => recipe.name.includes(filter))
+                    .map((recipe, index) => (
                     <RecipeCard
                         key={index}
                         recipe={{

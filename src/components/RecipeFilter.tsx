@@ -1,18 +1,19 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { filterRecipes } from "../types/actions";
 
 interface Props {
-    onFilter: (filterValue: string) => void;
+    filter: string;
 }
 
-const RecipeFilter = ({ onFilter }: Props) => {
-    const [filter, setFilter] = useState("");
+const RecipeFilter = ({ filter }: Props) => {
+    const dispatch = useDispatch();
 
     const handleFilterValueChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { value } = event.target;
-        setFilter(value);
-        onFilter(value);
+        dispatch(filterRecipes(value));
     };
-    
+
     return (
         <div>
             <input

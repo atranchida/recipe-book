@@ -7,13 +7,14 @@ export interface Recipe {
 
 export interface RecipeBookState {
     recipes: Recipe[],
-    filter: ''
+    filter: string
 }
 
 export const ADD_RECIPE = "ADD_RECIPE"
 export const DELETE_RECIPE = "DELETE_RECIPE"
 export const EDIT_RECIPE = "EDIT_RECIPE"
 export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
+export const FILTER_RECIPE = "FILTER_RECIPE"
 
 export interface AddRecipeAction {
     type: typeof ADD_RECIPE;
@@ -37,10 +38,16 @@ export interface EditIngredientAction {
     newIngredients: Ingredient[];
 }
 
+export interface FilterRecipeAction {
+    type: typeof FILTER_RECIPE;
+    filterValue: string;
+}
+
 export type RecipeActionTypes =
     | AddRecipeAction
     | DeleteRecipeAction
     | EditRecipeAction
     | EditIngredientAction
+    | FilterRecipeAction
 
 export type AppActions = RecipeActionTypes

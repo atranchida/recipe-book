@@ -1,56 +1,50 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import './App.css';
-import AddRecipeButton from './components/AddRecipeButton';
-import RecipeFilter from './components/RecipeFilter';
-import RecipeList from './components/RecipeList';
+import React from "react";
+import { connect } from "react-redux";
+import "./App.css";
+import AddRecipeButton from "./components/AddRecipeButton";
+import RecipeFilter from "./components/RecipeFilter";
+import RecipeList from "./components/RecipeList";
 import { Recipe, RecipeBookState } from "./interfaces/Recipe";
 
 const Welcome = () => {
-  return <h1>Cook Book</h1>
+  return <h1>Cook Book</h1>;
 };
 
 const mapStateToProps = (state: RecipeBookState) => ({
   recipes: state.recipes,
-  filter: state.filter
-})
+  filter: state.filter,
+});
 
-const App = (state : RecipeBookState) => {
-
-  function filterIngredients(recipe: Recipe, filterValue: string) {
-    let hasIngredient = false;
-    recipe.ingredients.map((ingredient) => {
-      if (ingredient.name.toLocaleLowerCase().includes(filterValue.toLocaleLowerCase()))
-        hasIngredient = true;
-      return hasIngredient;
-    });
-    return hasIngredient;
-  }
-
-  const handleFilter = (filterValue: string) => {
-   //setFilter(filterValue);
-  };
+const App = (state: RecipeBookState) => {
+  
+  // function filterIngredients(recipe: Recipe, filterValue: string) {
+  //   let hasIngredient = false;
+  //   recipe.ingredients.map((ingredient) => {
+  //     if (
+  //       ingredient.name
+  //         .toLocaleLowerCase()
+  //         .includes(filterValue.toLocaleLowerCase())
+  //     )
+  //       hasIngredient = true;
+  //     return hasIngredient;
+  //   });
+  //   return hasIngredient;
+  // }
 
   return (
     <div>
-
       <div className="App-header">
         <Welcome />
-
         <RecipeFilter
-          onFilter={handleFilter}
+          filter={state.filter}
         />
-
-        or
-
+        ({state.filter}) or
         <AddRecipeButton />
       </div>
 
-      <RecipeList
-        recipes={state.recipes}
-      />
+      <RecipeList recipes={state.recipes} filter={state.filter} />
     </div>
   );
 };
 
-export default connect(mapStateToProps) (App);
+export default connect(mapStateToProps)(App);
