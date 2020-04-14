@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useStore } from 'react-redux';
 import './App.css';
 import AddRecipeButton from './components/AddRecipeButton';
 import RecipeFilter from './components/RecipeFilter';
@@ -11,6 +12,9 @@ const Welcome = () => {
 };
 
 const App = () => {
+  const store = useStore();
+  store.subscribe(() => setRecipes(store.getState().recipes));
+
   const [recipes, setRecipes] = useState<Array<Recipe>>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
   const [filter, setFilter] = useState("");
@@ -37,11 +41,6 @@ const App = () => {
     });
     return hasIngredient;
   }
-
-  const handleAddRecipe = (newRecipe: Recipe) => {
-    var newRecipes = [newRecipe, ...recipes]
-    setRecipes(newRecipes);
-  };
 
   const handleDeleteRecipe = (recipe: Recipe) => {
     console.log("Recipe deleted: " + recipe.name);
@@ -89,13 +88,11 @@ const App = () => {
 
         or
 
-        <AddRecipeButton
-          onAdd={handleAddRecipe}
-        />
+        <AddRecipeButton />
       </div>
 
       <RecipeList
-        recipes={filteredRecipes}
+        recipes={recipes}
         onDelete={handleDeleteRecipe}
         onEditRecipeName={handleEditRecipeName}
         onEditIngredients={handleEditIngredients}
