@@ -1,5 +1,6 @@
-import { Recipe, ADD_RECIPE, DELETE_RECIPE, EDIT_RECIPE, RecipeActionTypes, RecipeBookState } from "../interfaces/Recipe";
 import RecipeJSON from "../data/recipes.json";
+import { Ingredient } from "../interfaces/Ingredient";
+import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, Recipe, RecipeActionTypes, RecipeBookState } from "../interfaces/Recipe";
 
 const recipesObj: Array<Recipe> = RecipeJSON;
 
@@ -34,6 +35,13 @@ export function RecipeBookReducer(
             }
         }
 
+        case EDIT_INGREDIENT: {
+            return {
+                recipes: editIngredient(action.recipe, state.recipes, action.newIngredients),
+                filter: ''
+            }
+        }
+
         default:
             return state
     }
@@ -55,6 +63,17 @@ function editRecipe(recipe: Recipe, recipes: Recipe[], newName: string) {
     let recipesClone = [...recipes];
     let recipeToEdit = { ...recipesClone[index] };
     recipeToEdit.name = newName;
+    recipesClone[index] = recipeToEdit;
+
+    return recipesClone;
+}
+
+function editIngredient(recipe: Recipe, recipes: Recipe[], newIngredients: Ingredient[]) {
+    const index = recipes.findIndex(r => r.name === recipe.name);
+    let recipesClone = [...recipes];
+    let recipeToEdit = { ...recipesClone[index] };
+    recipeToEdit = recipe;
+    recipeToEdit.ingredients = newIngredients;
     recipesClone[index] = recipeToEdit;
 
     return recipesClone;

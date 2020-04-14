@@ -13,12 +13,7 @@ export interface RecipeBookState {
 export const ADD_RECIPE = "ADD_RECIPE"
 export const DELETE_RECIPE = "DELETE_RECIPE"
 export const EDIT_RECIPE = "EDIT_RECIPE"
-// export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
-
-// export interface SetRecipeAction {
-//     type: typeof SET_RECIPES;
-//     recipes: Recipe[];
-// }
+export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
 
 export interface AddRecipeAction {
     type: typeof ADD_RECIPE;
@@ -36,15 +31,16 @@ export interface EditRecipeAction {
     newName: string;
 }
 
-// export interface EditIngredientAction {
-//     type: typeof EDIT_INGREDIENT;
-//     ingredient: Ingredient;
-// }
+export interface EditIngredientAction {
+    type: typeof EDIT_INGREDIENT;
+    recipe: Recipe;
+    newIngredients: Ingredient[];
+}
 
 export type RecipeActionTypes =
     | AddRecipeAction
     | DeleteRecipeAction
     | EditRecipeAction
-// | EditIngredientAction
+    | EditIngredientAction
 
 export type AppActions = RecipeActionTypes
