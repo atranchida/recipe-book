@@ -1,7 +1,10 @@
 import { Recipe, RecipeActionTypes, RecipeBookState } from "../interfaces/Recipe";
+import RecipeJSON from "../data/recipes.json";
+
+const recipesObj: Array<Recipe> = RecipeJSON;
 
 const initialState: RecipeBookState = {
-    recipes: Array<Recipe>(),
+    recipes: recipesObj,
     filter: ''
 }
 
