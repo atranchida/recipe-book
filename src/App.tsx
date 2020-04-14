@@ -27,16 +27,6 @@ const App = (state : RecipeBookState) => {
     return hasIngredient;
   }
 
-  const handleDeleteRecipe = (recipe: Recipe) => {
-    console.log("Recipe deleted: " + recipe.name);
-
-    //would probably be better to add deleted flag, set deleted to true and filter out deleted = true
-    /*const index = recipes.findIndex(r => r.name === recipe.name);
-    let recipesClone = [...recipes];
-    recipesClone.splice(index, 1);
-    setRecipes(recipesClone);*/
-  };
-
   const handleEditRecipeName = (recipe: Recipe, newName: string) => {
    /* const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
@@ -78,7 +68,6 @@ const App = (state : RecipeBookState) => {
 
       <RecipeList
         recipes={state.recipes}
-        onDelete={handleDeleteRecipe}
         onEditRecipeName={handleEditRecipeName}
         onEditIngredients={handleEditIngredients}
       />

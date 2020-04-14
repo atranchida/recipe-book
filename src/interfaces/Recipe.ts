@@ -11,30 +11,29 @@ export interface RecipeBookState {
 }
 
 export const ADD_RECIPE = "ADD_RECIPE"
-export const SET_RECIPES = "SET_RECIPES"
+//export const SET_RECIPES = "SET_RECIPES"
+export const DELETE_RECIPE = "DELETE_RECIPE"
 
 // export const EDIT_RECIPE = "EDIT_RECIPE"
 // export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
-// export const DELETE_RECIPE = "DELETE_RECIPE"
 
-
-export interface SetRecipeAction {
-    type: typeof SET_RECIPES;
-    recipes: Recipe[];
-}
+// export interface SetRecipeAction {
+//     type: typeof SET_RECIPES;
+//     recipes: Recipe[];
+// }
 
 export interface AddRecipeAction {
     type: typeof ADD_RECIPE;
     recipe: Recipe;
 }
 
+export interface DeleteRecipeAction {
+    type: typeof DELETE_RECIPE;
+    recipe: Recipe;
+}
+
 // export interface EditRecipeAction {
 //     type: typeof EDIT_RECIPE;
-//     recipe: Recipe;
-// }
-
-// export interface DeleteRecipeAction {
-//     type: typeof DELETE_RECIPE;
 //     recipe: Recipe;
 // }
 
@@ -44,10 +43,10 @@ export interface AddRecipeAction {
 // }
 
 export type RecipeActionTypes =
-    | SetRecipeAction
+    //| SetRecipeAction
     | AddRecipeAction
+    | DeleteRecipeAction
 // | EditRecipeAction
-// | DeleteRecipeAction
 // | EditIngredientAction
 
 export type AppActions = RecipeActionTypes

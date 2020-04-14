@@ -4,16 +4,18 @@ import styles from '../css/RecipeList.module.css';
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
 import IngredientList from "./IngredientList";
+import { useDispatch } from "react-redux";
+import { deleteRecipe } from '../types/actions';
 
 export interface Props {
     recipe: Recipe;
-    onDelete: (recipe: Recipe) => void
     onEditRecipeName: (recipe: Recipe, newName: string) => void
     onEditIngredients: (recipe: Recipe) => void
 }
 
-function RecipeCard({ recipe, onDelete, onEditRecipeName, onEditIngredients }: Props) {
-
+function RecipeCard({ recipe, onEditRecipeName, onEditIngredients }: Props) {
+    const dispatch = useDispatch();
+    
     const handleChange = (evt: { target: { value: string; }; }) => {
         onEditRecipeName(recipe, evt.target.value);
         recipe.name = evt.target.value
@@ -24,11 +26,15 @@ function RecipeCard({ recipe, onDelete, onEditRecipeName, onEditIngredients }: P
         onEditIngredients(recipe);
     }
 
+    const handleDelete = (recipe: Recipe) => {
+        dispatch(deleteRecipe(recipe));
+    }
+
     return (
         <>
             <div className={styles.RecipeCard}>
                 <button className={styles.DeleteButton}
-                    onClick={() => onDelete(recipe)}
+                    onClick={() => handleDelete(recipe)}
                     data-testid="delete-recipe">
                     X
              </button>
