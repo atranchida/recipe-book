@@ -9,8 +9,3 @@ export const deleteRecipe = (recipe: Recipe): RecipeActionTypes => ({
     type: DELETE_RECIPE,
     recipe
 });
-
-// export const setRecipes = ( recipes: Recipe[] ): RecipeActionTypes => ({
-//     type: SET_RECIPES,
-//     recipes
-// });

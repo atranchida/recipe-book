@@ -11,7 +11,6 @@ export interface RecipeBookState {
 }
 
 export const ADD_RECIPE = "ADD_RECIPE"
-//export const SET_RECIPES = "SET_RECIPES"
 export const DELETE_RECIPE = "DELETE_RECIPE"
 
 // export const EDIT_RECIPE = "EDIT_RECIPE"
@@ -43,7 +42,6 @@ export interface DeleteRecipeAction {
 // }
 
 export type RecipeActionTypes =
-    //| SetRecipeAction
     | AddRecipeAction
     | DeleteRecipeAction
 // | EditRecipeAction
