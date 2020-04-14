@@ -27,17 +27,6 @@ const App = (state : RecipeBookState) => {
     return hasIngredient;
   }
 
-  const handleEditRecipeName = (recipe: Recipe, newName: string) => {
-   /* const index = recipes.findIndex(r => r.name === recipe.name);
-    let recipesClone = [...recipes];
-    let recipeToEdit = { ...recipesClone[index] };
-    recipeToEdit.name = newName;
-    recipesClone[index] = recipeToEdit;
-    setRecipes(recipesClone);
-
-    console.log("Recipe renamed to: " + recipesClone[index].name);*/
-  };
-
   const handleEditIngredients = (recipe: Recipe) => {
     /*const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
@@ -68,7 +57,6 @@ const App = (state : RecipeBookState) => {
 
       <RecipeList
         recipes={state.recipes}
-        onEditRecipeName={handleEditRecipeName}
         onEditIngredients={handleEditIngredients}
       />
     </div>

@@ -5,20 +5,18 @@ import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
 import IngredientList from "./IngredientList";
 import { useDispatch } from "react-redux";
-import { deleteRecipe } from '../types/actions';
+import { deleteRecipe, editRecipe } from '../types/actions';
 
 export interface Props {
     recipe: Recipe;
-    onEditRecipeName: (recipe: Recipe, newName: string) => void
     onEditIngredients: (recipe: Recipe) => void
 }
 
-function RecipeCard({ recipe, onEditRecipeName, onEditIngredients }: Props) {
+function RecipeCard({ recipe, onEditIngredients }: Props) {
     const dispatch = useDispatch();
     
-    const handleChange = (evt: { target: { value: string; }; }) => {
-        onEditRecipeName(recipe, evt.target.value);
-        recipe.name = evt.target.value
+    const handleRecipeNameChange = (evt: { target: { value: string; }; }) => {
+        dispatch(editRecipe(recipe, evt.target.value));
     };
 
     const handleIngredientChange = (newIngredients: Array<Ingredient>) => {
@@ -42,7 +40,7 @@ function RecipeCard({ recipe, onEditRecipeName, onEditIngredients }: Props) {
                     <h1>
                         <ContentEditable
                             html={recipe.name}
-                            onChange={handleChange}
+                            onChange={handleRecipeNameChange}
                         />
                     </h1>
                     <IngredientList

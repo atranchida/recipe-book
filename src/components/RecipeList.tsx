@@ -6,11 +6,10 @@ import RecipeCard from "./RecipeCard";
 
 interface Props {
     recipes: Recipe[];
-    onEditRecipeName: (recipe: Recipe, newName: string) => void
     onEditIngredients: (recipe: Recipe) => void
 }
 
-const RecipeList = ({ recipes, onEditRecipeName, onEditIngredients }: Props) => {
+const RecipeList = ({ recipes, onEditIngredients }: Props) => {
     const [currentRecipes, setCurrentRecipes] = useState<Array<Recipe>>([]);
     const [hasMore, setHasMore] = useState(true);
     const [currentLength, setCurrentLength] = useState(30);
@@ -45,7 +44,6 @@ const RecipeList = ({ recipes, onEditRecipeName, onEditIngredients }: Props) => 
                             name: recipe.name,
                             ingredients: recipe.ingredients
                         }}
-                        onEditRecipeName={onEditRecipeName}
                         onEditIngredients={onEditIngredients}
                     />
                 ))}
