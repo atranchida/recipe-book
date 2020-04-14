@@ -1,4 +1,5 @@
-import { ADD_RECIPE, Recipe, RecipeActionTypes, DELETE_RECIPE, EDIT_RECIPE } from "../interfaces/Recipe";
+import { Ingredient } from "../interfaces/Ingredient";
+import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, Recipe, RecipeActionTypes } from "../interfaces/Recipe";
 
 export const addRecipe = (recipe: Recipe): RecipeActionTypes => ({
     type: ADD_RECIPE,
@@ -14,4 +15,10 @@ export const editRecipe = (recipe: Recipe, newName: string): RecipeActionTypes =
     type: EDIT_RECIPE,
     recipe,
     newName
+});
+
+export const editIngredients = (recipe: Recipe, newIngredients: Ingredient[]): RecipeActionTypes => ({
+    type: EDIT_INGREDIENT,
+    recipe,
+    newIngredients
 });

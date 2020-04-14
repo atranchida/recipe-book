@@ -27,15 +27,6 @@ const App = (state : RecipeBookState) => {
     return hasIngredient;
   }
 
-  const handleEditIngredients = (recipe: Recipe) => {
-    /*const index = recipes.findIndex(r => r.name === recipe.name);
-    let recipesClone = [...recipes];
-    let recipeToEdit = { ...recipesClone[index] };
-    recipeToEdit = recipe;
-    recipesClone[index] = recipeToEdit;
-    setRecipes(recipesClone);*/
-  };
-
   const handleFilter = (filterValue: string) => {
    //setFilter(filterValue);
   };
@@ -57,7 +48,6 @@ const App = (state : RecipeBookState) => {
 
       <RecipeList
         recipes={state.recipes}
-        onEditIngredients={handleEditIngredients}
       />
     </div>
   );

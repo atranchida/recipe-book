@@ -1,31 +1,29 @@
 import React from "react";
 import ContentEditable from 'react-contenteditable';
+import { useDispatch } from "react-redux";
 import styles from '../css/RecipeList.module.css';
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
+import { deleteRecipe, editIngredients, editRecipe } from '../types/actions';
 import IngredientList from "./IngredientList";
-import { useDispatch } from "react-redux";
-import { deleteRecipe, editRecipe } from '../types/actions';
 
 export interface Props {
     recipe: Recipe;
-    onEditIngredients: (recipe: Recipe) => void
 }
 
-function RecipeCard({ recipe, onEditIngredients }: Props) {
+function RecipeCard({ recipe }: Props) {
     const dispatch = useDispatch();
     
     const handleRecipeNameChange = (evt: { target: { value: string; }; }) => {
         dispatch(editRecipe(recipe, evt.target.value));
     };
 
-    const handleIngredientChange = (newIngredients: Array<Ingredient>) => {
-        recipe.ingredients = newIngredients;
-        onEditIngredients(recipe);
-    }
-
     const handleDelete = (recipe: Recipe) => {
         dispatch(deleteRecipe(recipe));
+    }
+
+    const handleIngredientChange = (newIngredients: Array<Ingredient>) => {
+        dispatch(editIngredients(recipe, newIngredients));
     }
 
     return (

@@ -68,7 +68,7 @@ function editRecipe(recipe: Recipe, recipes: Recipe[], newName: string) {
     return recipesClone;
 }
 
-function editIngredient(recipe: Recipe, recipes: Recipe[], newIngredients: Ingredient[]) {
+function editIngredient(recipe: Recipe, recipes: Recipe[], newIngredients: Ingredient[]) {    
     const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
     let recipeToEdit = { ...recipesClone[index] };
