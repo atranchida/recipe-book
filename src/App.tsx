@@ -1,36 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useStore } from 'react-redux';
+import React from 'react';
+import { connect } from 'react-redux';
 import './App.css';
 import AddRecipeButton from './components/AddRecipeButton';
 import RecipeFilter from './components/RecipeFilter';
 import RecipeList from './components/RecipeList';
-import RecipeJSON from "./data/recipes.json";
-import { Recipe } from "./interfaces/Recipe";
+import { Recipe, RecipeBookState } from "./interfaces/Recipe";
 
 const Welcome = () => {
   return <h1>Cook Book</h1>
 };
 
-const App = () => {
-  const store = useStore();
-  store.subscribe(() => setRecipes(store.getState().recipes));
+const mapStateToProps = (state: RecipeBookState) => ({
+  recipes: state.recipes,
+  filter: state.filter
+})
 
-  const [recipes, setRecipes] = useState<Array<Recipe>>([]);
-  const [filteredRecipes, setFilteredRecipes] = useState<Array<Recipe>>([]);
-  const [filter, setFilter] = useState("");
-
-  useEffect(() => {
-    const recipesObj: Array<Recipe> = RecipeJSON;
-    setRecipes(recipesObj);
-  }, [])
-
-  useEffect(() => {
-    const filteredRecipes = recipes.filter(recipe =>
-      (recipe.name.toLocaleLowerCase().includes(filter.toLocaleLowerCase()))
-      || (filterIngredients(recipe, filter)));
-
-    setFilteredRecipes(filteredRecipes);
-  }, [recipes, filter])
+const App = (state : RecipeBookState) => {
 
   function filterIngredients(recipe: Recipe, filterValue: string) {
     let hasIngredient = false;
@@ -46,34 +31,34 @@ const App = () => {
     console.log("Recipe deleted: " + recipe.name);
 
     //would probably be better to add deleted flag, set deleted to true and filter out deleted = true
-    const index = recipes.findIndex(r => r.name === recipe.name);
+    /*const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
     recipesClone.splice(index, 1);
-    setRecipes(recipesClone);
+    setRecipes(recipesClone);*/
   };
 
   const handleEditRecipeName = (recipe: Recipe, newName: string) => {
-    const index = recipes.findIndex(r => r.name === recipe.name);
+   /* const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
     let recipeToEdit = { ...recipesClone[index] };
     recipeToEdit.name = newName;
     recipesClone[index] = recipeToEdit;
     setRecipes(recipesClone);
 
-    console.log("Recipe renamed to: " + recipesClone[index].name);
+    console.log("Recipe renamed to: " + recipesClone[index].name);*/
   };
 
   const handleEditIngredients = (recipe: Recipe) => {
-    const index = recipes.findIndex(r => r.name === recipe.name);
+    /*const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
     let recipeToEdit = { ...recipesClone[index] };
     recipeToEdit = recipe;
     recipesClone[index] = recipeToEdit;
-    setRecipes(recipesClone);
+    setRecipes(recipesClone);*/
   };
 
   const handleFilter = (filterValue: string) => {
-    setFilter(filterValue);
+   //setFilter(filterValue);
   };
 
   return (
@@ -92,7 +77,7 @@ const App = () => {
       </div>
 
       <RecipeList
-        recipes={recipes}
+        recipes={state.recipes}
         onDelete={handleDeleteRecipe}
         onEditRecipeName={handleEditRecipeName}
         onEditIngredients={handleEditIngredients}
@@ -101,4 +86,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(mapStateToProps) (App);
