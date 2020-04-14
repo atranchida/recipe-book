@@ -42,21 +42,20 @@ export function RecipeBookReducer(
 function deleteRecipe(recipe: Recipe, recipes: Recipe[]) {
     const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
-    recipesClone.splice(index, 1);
-
     console.log("Deleted Recipe: " + recipesClone[index].name);
+    recipesClone.splice(index, 1);
 
     return recipesClone;
 }
 
 function editRecipe(recipe: Recipe, recipes: Recipe[], newName: string) {
+    console.log("Recipe renamed to: " + newName);
+
     const index = recipes.findIndex(r => r.name === recipe.name);
     let recipesClone = [...recipes];
     let recipeToEdit = { ...recipesClone[index] };
     recipeToEdit.name = newName;
     recipesClone[index] = recipeToEdit;
-
-    console.log("Recipe renamed to: " + recipesClone[index].name);
 
     return recipesClone;
 }
