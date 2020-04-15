@@ -1,7 +1,8 @@
+import { NewRecipe } from './../interfaces/Recipe';
 import { Ingredient } from "../interfaces/Ingredient";
 import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, FILTER_RECIPE, Recipe, RecipeActionTypes } from "../interfaces/Recipe";
 
-export const addRecipe = (recipe: Recipe): RecipeActionTypes => ({
+export const addRecipe = (recipe: NewRecipe): RecipeActionTypes => ({
     type: ADD_RECIPE,
     recipe
 });

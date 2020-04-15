@@ -1,53 +1,58 @@
-import { Ingredient } from "../interfaces/Ingredient"
+import { Ingredient } from "../interfaces/Ingredient";
 
-export interface Recipe {
-    name: string;
-    ingredients: Ingredient[];
+export interface NewRecipe {
+  name: string;
+  ingredients: Ingredient[];
+}
+
+export interface Recipe extends NewRecipe {
+  id: number;
 }
 
 export interface RecipeBookState {
-    recipes: Recipe[],
-    filter: string
+  recipes: Recipe[];
+  filter: string;
+  nextId: number;
 }
 
-export const ADD_RECIPE = "ADD_RECIPE"
-export const DELETE_RECIPE = "DELETE_RECIPE"
-export const EDIT_RECIPE = "EDIT_RECIPE"
-export const EDIT_INGREDIENT = "EDIT_INGREDIENT"
-export const FILTER_RECIPE = "FILTER_RECIPE"
+export const ADD_RECIPE = "ADD_RECIPE";
+export const DELETE_RECIPE = "DELETE_RECIPE";
+export const EDIT_RECIPE = "EDIT_RECIPE";
+export const EDIT_INGREDIENT = "EDIT_INGREDIENT";
+export const FILTER_RECIPE = "FILTER_RECIPE";
 
 export interface AddRecipeAction {
-    type: typeof ADD_RECIPE;
-    recipe: Recipe;
+  type: typeof ADD_RECIPE;
+  recipe: NewRecipe;
 }
 
 export interface DeleteRecipeAction {
-    type: typeof DELETE_RECIPE;
-    recipe: Recipe;
+  type: typeof DELETE_RECIPE;
+  recipe: Recipe;
 }
 
 export interface EditRecipeAction {
-    type: typeof EDIT_RECIPE;
-    recipe: Recipe;
-    newName: string;
+  type: typeof EDIT_RECIPE;
+  recipe: Recipe;
+  newName: string;
 }
 
 export interface EditIngredientAction {
-    type: typeof EDIT_INGREDIENT;
-    recipe: Recipe;
-    newIngredients: Ingredient[];
+  type: typeof EDIT_INGREDIENT;
+  recipe: Recipe;
+  newIngredients: Ingredient[];
 }
 
 export interface FilterRecipeAction {
-    type: typeof FILTER_RECIPE;
-    filterValue: string;
+  type: typeof FILTER_RECIPE;
+  filterValue: string;
 }
 
 export type RecipeActionTypes =
-    | AddRecipeAction
-    | DeleteRecipeAction
-    | EditRecipeAction
-    | EditIngredientAction
-    | FilterRecipeAction
+  | AddRecipeAction
+  | DeleteRecipeAction
+  | EditRecipeAction
+  | EditIngredientAction
+  | FilterRecipeAction;
 
-export type AppActions = RecipeActionTypes
+export type AppActions = RecipeActionTypes;

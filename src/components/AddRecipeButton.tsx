@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import styles from '../css/RecipeForm.module.css';
-import { Recipe } from '../interfaces/Recipe';
+import { NewRecipe } from '../interfaces/Recipe';
 import { addRecipe } from '../types/actions';
 import RecipeForm from './RecipeForm';
 
@@ -15,7 +15,7 @@ const AddRecipeButton = () => {
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
 
-    const handleCreateRecipe = (newRecipe: Recipe) => {
+    const handleCreateRecipe = (newRecipe: NewRecipe) => {
         dispatch(addRecipe(newRecipe));
         setOpen(false);
     };

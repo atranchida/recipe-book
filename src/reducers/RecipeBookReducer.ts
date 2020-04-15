@@ -11,11 +11,15 @@ import {
   RecipeBookState,
 } from "../interfaces/Recipe";
 
-const recipesObj: Array<Recipe> = RecipeJSON;
+const recipesObj: Array<Recipe> = RecipeJSON.map((recipe, index) => ({
+  ...recipe,
+  id: index,
+})) as Recipe[];
 
 const initialState: RecipeBookState = {
   recipes: recipesObj,
   filter: "",
+  nextId: recipesObj.length + 1,
 };
 
 export function RecipeBookReducer(
@@ -24,9 +28,16 @@ export function RecipeBookReducer(
 ): RecipeBookState {
   switch (action.type) {
     case ADD_RECIPE: {
+      const id = state.nextId;
+      console.log(`Generated new ID: ${id}`);
+      const newRecipe: Recipe = {
+        ...action.recipe,
+        id,
+      };
       return {
         ...state,
-        recipes: [action.recipe, ...state.recipes],
+        recipes: [newRecipe, ...state.recipes],
+        nextId: id + 1,
       };
     }
 
@@ -79,13 +90,22 @@ function deleteRecipe(recipe: Recipe, recipes: Recipe[]) {
 function editRecipe(recipe: Recipe, recipes: Recipe[], newName: string) {
   console.log("Recipe renamed to: " + newName);
 
-  const index = recipes.findIndex((r) => r.name === recipe.name);
+  return recipes.map((currentRecipe) => {
+    if (currentRecipe.name === recipe.name) {
+      return {
+        ...currentRecipe,
+        name: newName,
+      };
+    } else return currentRecipe;
+  });
+
+  /*const index = recipes.findIndex((r) => r.name === recipe.name);
   let recipesClone = [...recipes];
   let recipeToEdit = { ...recipesClone[index] };
   recipeToEdit.name = newName;
   recipesClone[index] = recipeToEdit;
 
-  return recipesClone;
+  return recipesClone;*/
 }
 
 function editIngredient(

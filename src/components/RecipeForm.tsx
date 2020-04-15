@@ -1,16 +1,16 @@
 import React, { ChangeEvent, FormEvent, MouseEvent, useState } from "react";
 import styles from '../css/RecipeForm.module.css';
 import { Ingredient } from "../interfaces/Ingredient";
-import { Recipe } from "../interfaces/Recipe";
-import IngredientList from "./IngredientList";
+import { NewRecipe } from "../interfaces/Recipe";
 import FileUpload from "./FileUpload";
+import IngredientList from "./IngredientList";
 
 export interface Props {
     onIngredientChange: (ingredient: string) => void;
     onRecipeNameChange: (recipe: string) => void;
     onAddIngredient: (ingredient: string) => void;
     onEditIngredient: (ingredient: Array<Ingredient>) => void;
-    onCreate: (newRecipe: Recipe) => void;
+    onCreate: (newRecipe: NewRecipe) => void;
 }
 
 function RecipeForm({ onAddIngredient, onCreate, onIngredientChange, onRecipeNameChange, onEditIngredient, ...props }: Props) {

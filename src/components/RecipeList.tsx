@@ -63,11 +63,8 @@ const RecipeList = ({ recipes, filter }: Props) => {
           )
           .map((recipe, index) => (
             <RecipeCard
-              key={index}
-              recipe={{
-                name: recipe.name,
-                ingredients: recipe.ingredients,
-              }}
+              key={recipe.id}
+              recipe={recipe}
             />
           ))}
       </InfiniteScroll>
