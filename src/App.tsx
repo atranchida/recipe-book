@@ -1,21 +1,20 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import "./App.css";
 import AddRecipeButton from "./components/AddRecipeButton";
 import RecipeFilter from "./components/RecipeFilter";
 import RecipeList from "./components/RecipeList";
-import { Recipe, RecipeBookState } from "./interfaces/Recipe";
+import { RecipeBookState } from "./interfaces/Recipe";
 
 const Welcome = () => {
   return <h1>Cook Book</h1>;
 };
 
-const mapStateToProps = (state: RecipeBookState) => ({
-  recipes: state.recipes,
-  filter: state.filter,
-});
+const App = () => {
+  const { recipes, filter } = useSelector<RecipeBookState, RecipeBookState>(
+    (state) => state
+  );
 
-const App = (state: RecipeBookState) => {
   // function filterIngredients(recipe: Recipe, filterValue: string) {
   //   let hasIngredient = false;
   //   recipe.ingredients.map((ingredient) => {
@@ -34,14 +33,13 @@ const App = (state: RecipeBookState) => {
     <div>
       <div className="App-header">
         <Welcome />
-        <RecipeFilter filter={state.filter} />
-         or
+        <RecipeFilter filter={filter} /> or
         <AddRecipeButton />
       </div>
 
-      <RecipeList recipes={state.recipes} filter={state.filter} />
+      <RecipeList recipes={recipes} filter={filter} />
     </div>
   );
 };
 
-export default connect(mapStateToProps)(App);
+export default App;
