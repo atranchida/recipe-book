@@ -16,7 +16,6 @@ const mapStateToProps = (state: RecipeBookState) => ({
 });
 
 const App = (state: RecipeBookState) => {
-  
   // function filterIngredients(recipe: Recipe, filterValue: string) {
   //   let hasIngredient = false;
   //   recipe.ingredients.map((ingredient) => {
@@ -35,10 +34,8 @@ const App = (state: RecipeBookState) => {
     <div>
       <div className="App-header">
         <Welcome />
-        <RecipeFilter
-          filter={state.filter}
-        />
-        ({state.filter}) or
+        <RecipeFilter filter={state.filter} />
+         or
         <AddRecipeButton />
       </div>
 
