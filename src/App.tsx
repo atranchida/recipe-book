@@ -15,20 +15,6 @@ const App = () => {
     (state) => state
   );
 
-  // function filterIngredients(recipe: Recipe, filterValue: string) {
-  //   let hasIngredient = false;
-  //   recipe.ingredients.map((ingredient) => {
-  //     if (
-  //       ingredient.name
-  //         .toLocaleLowerCase()
-  //         .includes(filterValue.toLocaleLowerCase())
-  //     )
-  //       hasIngredient = true;
-  //     return hasIngredient;
-  //   });
-  //   return hasIngredient;
-  // }
-
   return (
     <div>
       <div className="App-header">
