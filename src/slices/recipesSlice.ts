@@ -36,27 +36,30 @@ const recipesSlice = createSlice({
         id,
       };
 
-      state.recipes = [newRecipe, ...state.recipes];
+      state.recipes.unshift(newRecipe);
       state.nextId = id + 1;
     },
 
     deleteRecipe(state, action: PayloadAction<Recipe>) {
-      state.recipes = doDeleteRecipe(action.payload, state.recipes);
+      const index = state.recipes.findIndex(
+        (r) => r.name === action.payload.name
+      );
+      state.recipes.splice(index, 1);
     },
 
     editRecipeName(state, action: PayloadAction<EditRecipeNameDetails>) {
-      state.recipes = doEditRecipeName(
-        action.payload.recipe,
+      updateRecipeById(
         state.recipes,
-        action.payload.newName
+        action.payload.recipe.id,
+        (recipe) => (recipe.name = action.payload.newName)
       );
     },
 
     editIngredients(state, action: PayloadAction<EditIngredientsDetails>) {
-      state.recipes = doEditIngredients(
-        action.payload.recipe,
+      updateRecipeById(
         state.recipes,
-        action.payload.newIngredients
+        action.payload.recipe.id,
+        (recipe) => (recipe.ingredients = action.payload.newIngredients)
       );
     },
 
@@ -66,42 +69,15 @@ const recipesSlice = createSlice({
   },
 });
 
-function doDeleteRecipe(recipe: Recipe, recipes: Recipe[]) {
-  console.log("Deleted Recipe: " + recipe.name);
-
-  const index = recipes.findIndex((r) => r.name === recipe.name);
-  let recipesClone = [...recipes];
-  recipesClone.splice(index, 1);
-
-  return recipesClone;
-}
-
-function doEditRecipeName(recipe: Recipe, recipes: Recipe[], newName: string) {
-  console.log("Recipe renamed to: " + newName);
-
-  return recipes.map((currentRecipe) => {
-    if (currentRecipe.name === recipe.name) {
-      return {
-        ...currentRecipe,
-        name: newName,
-      };
-    } else return currentRecipe;
-  });
-}
-
-function doEditIngredients(
-  recipe: Recipe,
+function updateRecipeById(
   recipes: Recipe[],
-  newIngredients: Ingredient[]
+  id: number,
+  updater: (recipe: Recipe) => void
 ) {
-  return recipes.map((currentRecipe) => {
-    if (currentRecipe.name === recipe.name) {
-      return {
-        ...currentRecipe,
-        ingredients: newIngredients,
-      };
-    } else return currentRecipe;
-  });
+  const recipe = recipes.find((recipe) => recipe.id === id);
+  if (recipe) {
+    updater(recipe);
+  }
 }
 
 export const {
