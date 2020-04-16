@@ -1,15 +1,6 @@
 import RecipeJSON from "../data/recipes.json";
 import { Ingredient } from "../interfaces/Ingredient";
-import {
-  ADD_RECIPE,
-  DELETE_RECIPE,
-  EDIT_INGREDIENT,
-  EDIT_RECIPE,
-  FILTER_RECIPE,
-  Recipe,
-  RecipeActionTypes,
-  RecipeBookState,
-} from "../interfaces/Recipe";
+import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, FILTER_RECIPE, Recipe, RecipeActionTypes, RecipeBookState } from "../interfaces/Recipe";
 
 const recipesObj: Array<Recipe> = RecipeJSON.map((recipe, index) => ({
   ...recipe,
@@ -98,14 +89,6 @@ function editRecipe(recipe: Recipe, recipes: Recipe[], newName: string) {
       };
     } else return currentRecipe;
   });
-
-  /*const index = recipes.findIndex((r) => r.name === recipe.name);
-  let recipesClone = [...recipes];
-  let recipeToEdit = { ...recipesClone[index] };
-  recipeToEdit.name = newName;
-  recipesClone[index] = recipeToEdit;
-
-  return recipesClone;*/
 }
 
 function editIngredient(
@@ -121,10 +104,6 @@ function editIngredient(
   recipesClone[index] = recipeToEdit;
 
   return recipesClone;
-}
-
-function filterRecipes(filterValue: string) {
-  return filterValue;
 }
 
 export default RecipeBookReducer;

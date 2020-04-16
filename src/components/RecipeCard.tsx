@@ -4,7 +4,8 @@ import { useDispatch } from "react-redux";
 import styles from "../css/RecipeList.module.css";
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
-import { deleteRecipe, editIngredients, editRecipe } from "../types/actions";
+import { deleteRecipe } from '../slices/recipesSlice';
+import { editIngredients, editRecipe } from "../types/actions";
 import IngredientList from "./IngredientList";
 
 export interface Props {

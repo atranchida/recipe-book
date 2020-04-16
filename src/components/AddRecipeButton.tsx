@@ -4,7 +4,7 @@ import { Modal } from 'react-responsive-modal';
 import "react-responsive-modal/styles.css";
 import styles from '../css/RecipeForm.module.css';
 import { NewRecipe } from '../interfaces/Recipe';
-import { addRecipe } from '../types/actions';
+import { addRecipe } from '../slices/recipesSlice';
 import RecipeForm from './RecipeForm';
 
 function noop() {
