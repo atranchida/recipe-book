@@ -1,4 +1,4 @@
-import { NewRecipe } from './../interfaces/Recipe';
+/*import { NewRecipe } from './../interfaces/Recipe';
 import { Ingredient } from "../interfaces/Ingredient";
 import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, FILTER_RECIPE, Recipe, RecipeActionTypes } from "../interfaces/Recipe";
 
@@ -27,4 +27,4 @@ export const editIngredients = (recipe: Recipe, newIngredients: Ingredient[]): R
 export const filterRecipes = (filterValue: string): RecipeActionTypes => ({
     type: FILTER_RECIPE,
     filterValue
-});
+});*/

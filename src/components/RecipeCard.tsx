@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import styles from "../css/RecipeList.module.css";
 import { Ingredient } from "../interfaces/Ingredient";
 import { Recipe } from "../interfaces/Recipe";
-import { deleteRecipe } from '../slices/recipesSlice';
-import { editIngredients, editRecipe } from "../types/actions";
+import { deleteRecipe, editIngredients, editRecipeName } from "../slices/recipesSlice";
 import IngredientList from "./IngredientList";
 
 export interface Props {
@@ -17,7 +16,8 @@ function RecipeCard({ recipe }: Props) {
 
   const handleRecipeNameChange = (evt: ContentEditableEvent) => {
     if (evt.type === "input") {
-      dispatch(editRecipe(recipe, evt.target.value));
+      const newName = evt.target.value;
+      dispatch(editRecipeName({ recipe, newName }));
     }
   };
 
@@ -26,7 +26,7 @@ function RecipeCard({ recipe }: Props) {
   };
 
   const handleIngredientChange = (newIngredients: Array<Ingredient>) => {
-    dispatch(editIngredients(recipe, newIngredients));
+    dispatch(editIngredients({ recipe, newIngredients }));
   };
 
   return (

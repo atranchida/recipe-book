@@ -1,6 +1,6 @@
 import React, { ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { filterRecipes } from "../types/actions";
+import { filterRecipes } from "../slices/recipesSlice";
 
 interface Props {
     filter: string;

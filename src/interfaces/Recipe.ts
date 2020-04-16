@@ -15,7 +15,7 @@ export interface RecipeBookState {
   nextId: number;
 }
 
-export const ADD_RECIPE = "ADD_RECIPE";
+/*export const ADD_RECIPE = "ADD_RECIPE";
 export const DELETE_RECIPE = "DELETE_RECIPE";
 export const EDIT_RECIPE = "EDIT_RECIPE";
 export const EDIT_INGREDIENT = "EDIT_INGREDIENT";
@@ -55,4 +55,4 @@ export type RecipeActionTypes =
   | EditIngredientAction
   | FilterRecipeAction;
 
-export type AppActions = RecipeActionTypes;
+export type AppActions = RecipeActionTypes;*/

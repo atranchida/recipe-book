@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import RecipeJSON from "../data/recipes.json";
+import { Ingredient } from "../interfaces/Ingredient";
 import { NewRecipe, Recipe, RecipeBookState } from "../interfaces/Recipe";
 
 const recipesObj: Array<Recipe> = RecipeJSON.map((recipe, index) => ({
@@ -12,6 +13,16 @@ const initialState: RecipeBookState = {
   filter: "",
   nextId: recipesObj.length + 1,
 };
+
+interface EditRecipeNameDetails {
+  recipe: Recipe;
+  newName: string;
+}
+
+interface EditIngredientsDetails {
+  recipe: Recipe;
+  newIngredients: Ingredient[];
+}
 
 const recipesSlice = createSlice({
   name: "recipes",
@@ -32,17 +43,72 @@ const recipesSlice = createSlice({
     deleteRecipe(state, action: PayloadAction<Recipe>) {
       state.recipes = doDeleteRecipe(action.payload, state.recipes);
     },
+
+    editRecipeName(state, action: PayloadAction<EditRecipeNameDetails>) {
+      state.recipes = doEditRecipeName(
+        action.payload.recipe,
+        state.recipes,
+        action.payload.newName
+      );
+    },
+
+    editIngredients(state, action: PayloadAction<EditIngredientsDetails>) {
+      state.recipes = doEditIngredients(
+        action.payload.recipe,
+        state.recipes,
+        action.payload.newIngredients
+      );
+    },
+
+    filterRecipes(state, action: PayloadAction<string>) {
+      state.filter = action.payload;
+    },
   },
 });
 
 function doDeleteRecipe(recipe: Recipe, recipes: Recipe[]) {
+  console.log("Deleted Recipe: " + recipe.name);
+
   const index = recipes.findIndex((r) => r.name === recipe.name);
   let recipesClone = [...recipes];
-  console.log("Deleted Recipe: " + recipesClone[index].name);
   recipesClone.splice(index, 1);
 
   return recipesClone;
 }
 
-export const { addRecipe, deleteRecipe } = recipesSlice.actions;
+function doEditRecipeName(recipe: Recipe, recipes: Recipe[], newName: string) {
+  console.log("Recipe renamed to: " + newName);
+
+  return recipes.map((currentRecipe) => {
+    if (currentRecipe.name === recipe.name) {
+      return {
+        ...currentRecipe,
+        name: newName,
+      };
+    } else return currentRecipe;
+  });
+}
+
+function doEditIngredients(
+  recipe: Recipe,
+  recipes: Recipe[],
+  newIngredients: Ingredient[]
+) {
+  return recipes.map((currentRecipe) => {
+    if (currentRecipe.name === recipe.name) {
+      return {
+        ...currentRecipe,
+        ingredients: newIngredients,
+      };
+    } else return currentRecipe;
+  });
+}
+
+export const {
+  addRecipe,
+  deleteRecipe,
+  editRecipeName,
+  editIngredients,
+  filterRecipes,
+} = recipesSlice.actions;
 export default recipesSlice.reducer;

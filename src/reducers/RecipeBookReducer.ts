@@ -1,4 +1,4 @@
-import RecipeJSON from "../data/recipes.json";
+/*import RecipeJSON from "../data/recipes.json";
 import { Ingredient } from "../interfaces/Ingredient";
 import { ADD_RECIPE, DELETE_RECIPE, EDIT_INGREDIENT, EDIT_RECIPE, FILTER_RECIPE, Recipe, RecipeActionTypes, RecipeBookState } from "../interfaces/Recipe";
 
@@ -106,4 +106,4 @@ function editIngredient(
   return recipesClone;
 }
 
-export default RecipeBookReducer;
+export default RecipeBookReducer;*/

@@ -11,14 +11,14 @@ const IngredientList = ({ ingredients, onEditIngredient }: Props) => {
 
     const handleChange = (ingredient: Ingredient, evt: { target: { value: string; }; }) => {
         const index = ingredients.findIndex(i => i.name === ingredient.name);
-        let ingredientToEdit = { ...ingredients[index] };
+        let ingredientsClone = [...ingredients];
+        let ingredientToEdit = { ...ingredientsClone[index] };
         ingredientToEdit.name = evt.target.value;
-        ingredients[index] = ingredientToEdit;
+        ingredientsClone[index] = ingredientToEdit;
 
-        onEditIngredient(ingredients);
-        ingredient.name = evt.target.value;
+        onEditIngredient(ingredientsClone);
 
-        console.log("Ingredient changed to: " + ingredients[index].name);
+        console.log("Ingredient changed to: " + evt.target.value);
     };
 
     return (
