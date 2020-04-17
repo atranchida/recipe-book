@@ -27,6 +27,7 @@
 }
 
 .CreateButton {
+    border-radius: 5px;
     background-color: #DF5433;
     display: block;
     padding: 17px 37px 17px 37px;
@@ -41,6 +42,7 @@
 } 
 
 .AddIngredientButton {
+    border-radius: 5px;
     background-color: #DF5433;
     padding: 4px 16px 4px 15px;
     color: #FFF;
@@ -53,6 +55,7 @@
 }
 
 .AddRecipeButton {
+    border-radius: 10px;
     background-color: #DF5433;
     display: block;
 	padding: 19px 39px 18px 39px;
